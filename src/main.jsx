@@ -7,11 +7,13 @@ import Home from './Components/Home/Home.jsx'
 import Register from './Components/Authentication/Register/Register.jsx';
 import AuthContextProvider, { AuthContext } from './Provider/AuthContextProvider.jsx';
 import SignIn from './Components/Authentication/SignIn/SignIn.jsx';
+import Error from './Components/Error/Error.jsx';
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <Default></Default>,
+    errorElement:<Error></Error>,
     children: [
       {
         path: '/',
