@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import animation from '../../../assets/Animation/Login Animation.json'
 import Lottie from 'lottie-react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../Provider/AuthContextProvider';
 import Swal from 'sweetalert2';
 import { FcGoogle } from 'react-icons/fc';
@@ -10,6 +10,8 @@ import { FaEye, FaEyeSlash } from 'react-icons/fa';
 const SignIn = () => {
     const { setUser, handleSignInUser, signInWithGoogle } = useContext(AuthContext);
     const [showPass, setShowPass] = useState(false);
+    const navigate = useNavigate();
+    const location = useLocation();
 
 
     const handleGoogleRegister = () => {
@@ -24,6 +26,7 @@ const SignIn = () => {
                     showConfirmButton: false,
                     timer: 1500
                 });
+                navigate(location?.state ? location?.state : "/");
             })
             .catch(err => {
                 Swal.fire({
@@ -53,6 +56,7 @@ const SignIn = () => {
                     timer: 1500
                 });
                 e.target.reset();
+                navigate(location?.state ? location?.state : "/")
             })
             .catch(err => {
                 Swal.fire({

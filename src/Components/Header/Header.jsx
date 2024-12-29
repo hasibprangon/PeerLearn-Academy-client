@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { AuthContext } from '../../Provider/AuthContextProvider';
 import Swal from 'sweetalert2';
 
@@ -32,8 +32,8 @@ const Header = () => {
     }
 
     const links = <>
-        <li><a>Item 1</a></li>
-        <li><a>Item 3</a></li>
+        <li><NavLink to='/'>Home</NavLink></li>
+        <li><NavLink to='/createAssignment'>Create Assignment</NavLink></li>
     </>
     return (
         <div>
@@ -62,7 +62,7 @@ const Header = () => {
                             }
                         </ul>
                     </div>
-                    <a className="btn btn-ghost text-xl">daisyUI</a>
+                    <a className="text-xl">PeerLearn Academy</a>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1">
@@ -93,7 +93,7 @@ const Header = () => {
                                                 <p className="text-sm text-gray-700">{user?.displayName}</p>
                                             </div>
                                             <div className='text-center'>
-                                                <button className="btn" onClick={signOutUser}>
+                                                <button className="btn" onClick={handleSignOut}>
                                                     Sign Out
                                                 </button>
                                             </div>

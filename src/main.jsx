@@ -8,6 +8,8 @@ import Register from './Components/Authentication/Register/Register.jsx';
 import AuthContextProvider, { AuthContext } from './Provider/AuthContextProvider.jsx';
 import SignIn from './Components/Authentication/SignIn/SignIn.jsx';
 import Error from './Components/Error/Error.jsx';
+import PrivateRoute from './PrivateRoute/PrivateRoute.jsx';
+import CreateAssignment from './Components/CreateAssignment/CreateAssignment.jsx';
 
 const router = createBrowserRouter([
   {
@@ -18,6 +20,10 @@ const router = createBrowserRouter([
       {
         path: '/',
         element: <Home></Home>
+      },
+      {
+        path:'/createAssignment',
+        element:<PrivateRoute><CreateAssignment></CreateAssignment></PrivateRoute>
       },
       {
         path:'/signIn',
