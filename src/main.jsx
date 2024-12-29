@@ -4,8 +4,9 @@ import './index.css';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Default from './Components/Default/Default.jsx'
 import Home from './Components/Home/Home.jsx'
-import Login from './Components/Authentication/Login/Login.jsx';
 import Register from './Components/Authentication/Register/Register.jsx';
+import AuthContextProvider, { AuthContext } from './Provider/AuthContextProvider.jsx';
+import SignIn from './Components/Authentication/SignIn/SignIn.jsx';
 
 const router = createBrowserRouter([
   {
@@ -17,8 +18,8 @@ const router = createBrowserRouter([
         element: <Home></Home>
       },
       {
-        path:'/login',
-        element:<Login></Login>
+        path:'/signIn',
+        element:<SignIn></SignIn>
       },
       {
         path:'/register',
@@ -30,6 +31,8 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <RouterProvider router={router}></RouterProvider>
+   <AuthContextProvider>
+   <RouterProvider router={router}></RouterProvider>
+   </AuthContextProvider>
   </StrictMode>,
 )
