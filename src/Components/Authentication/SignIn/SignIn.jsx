@@ -1,12 +1,41 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import animation from '../../../assets/Animation/Login Animation.json'
 import Lottie from 'lottie-react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../Provider/AuthContextProvider';
 import Swal from 'sweetalert2';
+import { FcGoogle } from 'react-icons/fc';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 const SignIn = () => {
-    const { setUser, handleSignInUser } = useContext(AuthContext)
+    const { setUser, handleSignInUser, signInWithGoogle } = useContext(AuthContext);
+    const [showPass, setShowPass] = useState(false);
+
+
+    const handleGoogleRegister = () => {
+        signInWithGoogle()
+            .then(result => {
+                const user = result.user;
+                setUser(user)
+                Swal.fire({
+                    position: "top",
+                    icon: "success",
+                    title: "Register Successful",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+            })
+            .catch(err => {
+                Swal.fire({
+                    position: "top",
+                    icon: "error",
+                    title: "Oops...",
+                    text: `${err.message}`,
+                });
+            })
+
+    };
+
     const handleSignIn = (e) => {
         e.preventDefault();
         const form = e.target;
@@ -53,16 +82,19 @@ const SignIn = () => {
                             </label>
                             <input type="email" name='email' placeholder="email" className="input input-bordered" required />
                         </div>
-                        <div className="form-control">
+                        <div className="form-control relative">
                             <label className="label">
                                 <span className="label-text">Password</span>
                             </label>
-                            <input type="password" name='password' placeholder="password" className="input input-bordered" required />
-                            <label className="label">
-                                <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
-                            </label>
+                            <input type={showPass ? 'text' : 'password'}  name='password' placeholder="password" className="input input-bordered" required />
+                            <button type='button' onClick={() => setShowPass(!showPass)} className='absolute right-2 top-12 btn btn-xs'>
+                                {
+                                    showPass ? <FaEyeSlash /> : <FaEye />
+                                }
+                            </button>
                         </div>
                         <div className="form-control mt-6">
+                            <button type='button' onClick={handleGoogleRegister} className='flex justify-center items-center gap-3 px-3 py-2 bg-gray-400 rounded-lg mb-4 text-white font-semibold'><FcGoogle className='text-lg' />Register With Google</button>
                             <button className="btn btn-primary">Login</button>
                         </div>
                         <p className='text-center font-semibold mb-3'>New To this website? Please <Link to='/register' className='text-blue-500 font-bold'>Register</Link></p>

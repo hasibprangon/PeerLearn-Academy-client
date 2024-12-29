@@ -1,7 +1,36 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../Provider/AuthContextProvider';
+import Swal from 'sweetalert2';
 
 const Header = () => {
+    const { user, signOutUser } = useContext(AuthContext);
+    const handleSignOut = () => {
+        signOutUser()
+            .then(() => {
+                Swal.fire({
+                    position: "top",
+                    icon: "success",
+                    title: "Your work has been saved",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+            })
+            .catch(err => {
+                toast.error(`${err.message}`);
+            })
+    };
+
+    const [info, setInfo] = useState(false);
+
+    const handleMouseHover = () => {
+        setInfo(true);
+    };
+
+    const handleMouseHoverOut = () => {
+        setInfo(false);
+    }
+
     const links = <>
         <li><a>Item 1</a></li>
         <li><a>Item 3</a></li>
@@ -28,9 +57,9 @@ const Header = () => {
                         <ul
                             tabIndex={0}
                             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
-                           {
-                            links
-                           }
+                            {
+                                links
+                            }
                         </ul>
                     </div>
                     <a className="btn btn-ghost text-xl">daisyUI</a>
@@ -43,7 +72,42 @@ const Header = () => {
                     </ul>
                 </div>
                 <div className="navbar-end">
-                    <Link to='/signIn' className="btn">Sign In</Link>
+                    {
+                        user?.email ? (
+                            <>
+                                <div>
+                                    <img
+                                        onMouseEnter={handleMouseHover}
+                                        onMouseDownCapture={handleMouseHoverOut}
+                                        className="w-10 h-10 border rounded-full mr-3"
+                                        src={user?.photoURL}
+                                        alt=''
+                                    />
+                                    {info && (
+                                        <div
+                                            className="absolute right-2  mt-4 w-44 bg-white rounded-lg shadow-lg z-10"
+                                            onMouseEnter={handleMouseHover}
+                                            onMouseLeave={handleMouseHoverOut}
+                                        >
+                                            <div className="p-4 border-b text-center">
+                                                <p className="text-sm text-gray-700">{user?.displayName}</p>
+                                            </div>
+                                            <div className='text-center'>
+                                                <button className="btn" onClick={signOutUser}>
+                                                    Sign Out
+                                                </button>
+                                            </div>
+                                        </div>
+                                    )}
+                                </div>
+                            </>
+                        ) : (
+                            <div className='flex'>
+                                <Link to='/signIn' className="btn mr-3  mt-3">
+                                   Sign In
+                                </Link>
+                            </div>
+                        )}
                 </div>
             </div>
         </div>

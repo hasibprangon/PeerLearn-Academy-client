@@ -1,10 +1,39 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { AuthContext } from '../../../Provider/AuthContextProvider';
 import Swal from 'sweetalert2';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { FcGoogle } from 'react-icons/fc';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 const Register = () => {
-    const { setUser, handleCreateUser } = useContext(AuthContext)
+    const { setUser, handleCreateUser, signInWithGoogle, updateUserProfile } = useContext(AuthContext);
+    const navigate = useNavigate();
+    const [showPass, setShowPass] = useState(false)
+    const [error, setError] = useState(false);
+
+    const handleGoogleRegister = () => {
+        signInWithGoogle()
+            .then(result => {
+                const user = result.user;
+                setUser(user)
+                Swal.fire({
+                    position: "top",
+                    icon: "success",
+                    title: "Register Successful",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+            })
+            .catch(err => {
+                Swal.fire({
+                    position: "top",
+                    icon: "error",
+                    title: "Oops...",
+                    text: `${err.message}`,
+                });
+            })
+
+    }
 
     const handleRegister = e => {
         e.preventDefault();
@@ -13,27 +42,53 @@ const Register = () => {
         const photo = form.photoUrl.value;
         const email = form.email.value;
         const password = form.password.value;
-        handleCreateUser(email, password)
-        .then(result => {
-            const user = result.user;
-            setUser(user);
-            Swal.fire({
-                position: "end",
-                icon: "success",
-                title: "You have Successfully Registered",
-                showConfirmButton: false,
-                timer: 1500
-              });
-              e.target.reset();
-        })
-        .catch(err => {
+
+        const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
+
+        if (!passwordRegex.test(password)) {
             Swal.fire({
                 icon: "error",
-                title: `${err.message}`,
+                title: "Password must be contains at least an Uppercase, a Lowercase, and be at least 6 characters long",
                 showConfirmButton: false,
-                timer: 1500
+                timer: 2000
             });
-        })
+            setError(true)
+            return;
+        };
+
+        handleCreateUser(email, password)
+            .then(result => {
+                const user = result.user;
+                setUser(user);
+                updateUserProfile({ displayName: name, photoURL: photo })
+                    .then(() => {
+                        Swal.fire({
+                            icon: "success",
+                            title: "Registration Successfully",
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                        e.target.reset();
+                        navigate('/');
+                    })
+                    .catch(err => {
+                        Swal.fire({
+                            icon: "error",
+                            title: `${err.message}`,
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                    })
+
+            })
+            .catch(err => {
+                Swal.fire({
+                    icon: "error",
+                    title: `${err.message}`,
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+            })
     }
     return (
         <div className="hero bg-base-200 min-h-screen p-5 my-5">
@@ -70,13 +125,22 @@ const Register = () => {
                             <input type="email" placeholder="Enter Your Email" name='email' className="input input-bordered" required />
                         </div>
                         {/* Password */}
-                        <div className="form-control">
+                        <div className="form-control relative">
                             <label className="label">
                                 <span className="label-text">Password</span>
                             </label>
-                            <input type="password" placeholder="password" name='password' className="input input-bordered" required />
+                            <input type={showPass ? 'text' : 'password'} placeholder="password" name='password' className="input input-bordered" required />
+                            <button type='button' onClick={() => setShowPass(!showPass)} className='absolute right-2 top-12 btn btn-xs'>
+                                {
+                                    showPass ? <FaEyeSlash /> : <FaEye />
+                                }
+                            </button>
                         </div>
+                        {
+                            error && <p className='text-red-600'>Password must be contains at least an Uppercase, a Lowercase, and be at least 6 characters long</p>
+                        }
                         <div className="form-control mt-6">
+                            <button type='button' onClick={handleGoogleRegister} className='flex justify-center items-center gap-3 px-3 py-2 bg-gray-400 rounded-lg mb-4 text-white font-semibold'><FcGoogle className='text-lg' />Register With Google</button>
                             <button className="btn btn-primary">Register</button>
                         </div>
                         <p className='text-center font-semibold mb-3'>Already Have an Account? Please <Link to='/signIn' className='text-blue-500 font-bold'>Login</Link></p>
