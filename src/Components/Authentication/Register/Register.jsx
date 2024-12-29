@@ -4,6 +4,8 @@ import Swal from 'sweetalert2';
 import { Link, useNavigate } from 'react-router-dom';
 import { FcGoogle } from 'react-icons/fc';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import animation from '../../../assets/Animation/Register Animation.json'
+import Lottie from 'lottie-react';
 
 const Register = () => {
     const { setUser, handleCreateUser, signInWithGoogle, updateUserProfile } = useContext(AuthContext);
@@ -91,14 +93,13 @@ const Register = () => {
             })
     }
     return (
-        <div className="hero bg-base-200 min-h-screen p-5 my-5">
+        <div className="hero p-5 my-5">
             <div className="hero-content flex-col lg:flex-row-reverse">
-                <div className="text-center lg:text-left">
-                    <h1 className="text-5xl font-bold">Login now!</h1>
-                    <p className="py-6">
-                        Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem
-                        quasi. In deleniti eaque aut repudiandae et a id nisi.
-                    </p>
+                <div className="text-center lg:text-left w-[500px]">
+                    <Lottie
+                        animationData={animation}
+                        loop={true}
+                    ></Lottie>
                 </div>
                 <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
                     <h1 className="text-4xl font-bold mb-8 text-center">Register now!</h1>
