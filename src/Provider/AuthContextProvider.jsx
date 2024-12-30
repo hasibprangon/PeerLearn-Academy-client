@@ -10,8 +10,6 @@ const AuthContextProvider = ({children}) => {
     const [loading, setLoading] = useState(true);
     const googleProvider = new GoogleAuthProvider();
 
-    console.log(user);
-
     // sign in with google
     const signInWithGoogle = () => {
         setLoading(true);

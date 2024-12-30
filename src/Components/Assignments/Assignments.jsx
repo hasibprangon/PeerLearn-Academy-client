@@ -4,7 +4,6 @@ import AssignmentsCards from './AssignmentsCards';
 
 const Assignments = () => {
     const data = useLoaderData();
-    console.log(data);
     return (
         <div>
             <h2 className="text-4xl text-center my-9 font-semibold text-zinc-500">All Assignments here</h2>
