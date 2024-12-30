@@ -4,10 +4,12 @@ import "react-datepicker/dist/react-datepicker.css";
 import useAuth from '../../hooks/useAuth';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router-dom';
 
 const CreateAssignment = () => {
     const [startDate, setStartDate] = useState(new Date());
     const { user } = useAuth();
+    const navigate = useNavigate()
     const handleSubmit = e => {
         e.preventDefault();
         const form = e.target;
@@ -43,6 +45,7 @@ const CreateAssignment = () => {
                     });
                 }
                 form.reset();
+                navigate('/assignments');
             })
             .catch(err => {
                 Swal.fire({

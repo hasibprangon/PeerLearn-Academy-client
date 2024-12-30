@@ -33,7 +33,11 @@ const Header = () => {
 
     const links = <>
         <li><NavLink to='/'>Home</NavLink></li>
-        <li><NavLink to='/createAssignment'>Create Assignment</NavLink></li>
+        <li><NavLink to='/assignments'>Assignments</NavLink></li>
+        {
+            user && user?.email && 
+            <li><NavLink to='/createAssignment'>Create Assignment</NavLink></li>
+        }
     </>
     return (
         <div>

@@ -10,6 +10,7 @@ import SignIn from './Components/Authentication/SignIn/SignIn.jsx';
 import Error from './Components/Error/Error.jsx';
 import PrivateRoute from './PrivateRoute/PrivateRoute.jsx';
 import CreateAssignment from './Components/CreateAssignment/CreateAssignment.jsx';
+import Assignments from './Components/Assignments/Assignments.jsx';
 
 const router = createBrowserRouter([
   {
@@ -20,6 +21,11 @@ const router = createBrowserRouter([
       {
         path: '/',
         element: <Home></Home>
+      },
+      {
+        path:'/assignments',
+        element:<Assignments></Assignments>,
+        loader: () => fetch(`http://localhost:5000/assignments`)
       },
       {
         path:'/createAssignment',
