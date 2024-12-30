@@ -11,6 +11,7 @@ import Error from './Components/Error/Error.jsx';
 import PrivateRoute from './PrivateRoute/PrivateRoute.jsx';
 import CreateAssignment from './Components/CreateAssignment/CreateAssignment.jsx';
 import Assignments from './Components/Assignments/Assignments.jsx';
+import ViewAssignments from './Components/ViewAssignments/ViewAssignments.jsx';
 
 const router = createBrowserRouter([
   {
@@ -26,6 +27,11 @@ const router = createBrowserRouter([
         path:'/assignments',
         element:<Assignments></Assignments>,
         loader: () => fetch(`http://localhost:5000/assignments`)
+      },
+      {
+        path:'/viewAssignments/:id',
+        element:<PrivateRoute><ViewAssignments></ViewAssignments></PrivateRoute>,
+        loader:({params}) => fetch(`http://localhost:5000/assignments/${params.id}`)
       },
       {
         path:'/createAssignment',

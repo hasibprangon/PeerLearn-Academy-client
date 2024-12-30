@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const AssignmentsCards = ({ assignment }) => {
     const { _id, title, description, imgUrl, marks, difficulty, creatorData, dueDate } = assignment;
@@ -34,9 +35,11 @@ const AssignmentsCards = ({ assignment }) => {
                     </div>
                 </div>
                 <div className="card-actions justify-center mt-4">
-                    <button className="btn btn-info text-white text-base font-semibold w-full">
-                        View Details
-                    </button>
+                    <Link className="btn btn-info text-white text-base font-semibold w-full" to={`/viewAssignments/${_id}`}>
+                        <button>
+                            View Assignment
+                        </button>
+                    </Link>
                     <button
                         className="btn btn-outline btn-warning text-white text-base font-semibold w-5/12"
                     >
