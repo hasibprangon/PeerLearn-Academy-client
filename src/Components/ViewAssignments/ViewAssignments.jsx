@@ -28,7 +28,8 @@ const ViewAssignments = () => {
             quickNote,
             status: 'Pending',
             obtainMarks: "",
-            feedback: ""
+            feedback: "",
+            marks
         };
 
         axios.post(`http://localhost:5000/submittedAssignment`, submittedData)

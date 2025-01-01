@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import useAuth from '../../hooks/useAuth';
+import { Link } from 'react-router-dom';
 
 const PendingAssignments = () => {
     const [pending, setPending] = useState([]);
@@ -48,7 +49,7 @@ const PendingAssignments = () => {
                                 </td>
                                 <td>{assignment?.name}</td>
                                 <th>
-                                    <button className="btn  btn-xs">Give Mark</button>
+                                    <Link to={`/giveMark/${assignment?._id}`} className="btn  btn-xs">Give Mark</Link>
                                 </th>
                             </tr>)
                         }

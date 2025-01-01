@@ -14,6 +14,7 @@ import Assignments from './Components/Assignments/Assignments.jsx';
 import ViewAssignments from './Components/ViewAssignments/ViewAssignments.jsx';
 import MySubmittedAssignment from './Components/MySubmittedAssignment/MySubmittedAssignment.jsx';
 import PendingAssignments from './Components/PendingAssignments/PendingAssignments.jsx';
+import GIveMark from './Components/GiveMark/GIveMark.jsx';
 
 const router = createBrowserRouter([
   {
@@ -46,6 +47,10 @@ const router = createBrowserRouter([
       {
         path:'/pendingAssignments',
         element:<PrivateRoute><PendingAssignments></PendingAssignments></PrivateRoute>
+      },
+      {
+        path:'/giveMark/:id',
+        element:<PrivateRoute><GIveMark></GIveMark></PrivateRoute>
       },
       {
         path:'/signIn',
