@@ -1,8 +1,51 @@
-import React from 'react';
+import axios from 'axios';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import Swal from 'sweetalert2';
+import useAuth from '../../hooks/useAuth';
 
-const AssignmentsCards = ({ assignment }) => {
+const AssignmentsCards = ({ assignment, handleDeleteAssignments }) => {
     const { _id, title, description, imgUrl, marks, difficulty, creatorData, dueDate } = assignment;
+    const { user } = useAuth();
+
+    const handleDelete = (id, email) => {
+        console.log(email, user?.email);
+        if (user?.email === email) {
+            Swal.fire({
+                title: "Are you sure?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, delete it!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    axios.delete(`http://localhost:5000/assignments/${id}`)
+                        .then(res => {
+                            if (res?.data?.deletedCount > 0) {
+                                Swal.fire({
+                                    title: "Deleted!",
+                                    text: "Your file has been deleted.",
+                                    icon: "success"
+                                });
+                                handleDeleteAssignments(id);
+                            }
+                        })
+
+                }
+            });
+        }
+         else { Swal.fire({
+                position: "top",
+                icon: "error",
+                title: "You are not the assignment creator",
+                showConfirmButton: false,
+                timer: 1500
+            });
+        }
+        
+    }
     return (
         <div className="card w-96 bg-base-100 shadow-xl hover:shadow-2xl transition-shadow mx-auto">
             <figure className="relative h-64">
@@ -47,6 +90,7 @@ const AssignmentsCards = ({ assignment }) => {
                     </button>
                     <button
                         className="btn btn-outline btn-error text-white text-base font-semibold w-5/12"
+                        onClick={() => handleDelete(_id, creatorData?.creatorEmail)}
                     >
                         Delete
                     </button>
