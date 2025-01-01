@@ -10,22 +10,19 @@ const ViewAssignments = () => {
     const { _id, title, description, imgUrl, marks, difficulty, creatorData, dueDate } = data;
     const { user } = useAuth();
     const navigate = useNavigate();
-    const [error, setError] = useState(false)
 
     const handleAssignmentSubmit = e => {
         e.preventDefault()
         const form = e.target;
+        const name  = form?.name?.value;
         const googleDocs = form?.googleDocs?.value;
-        const email = form?.email?.value;
+        const email = user?.email;
         const quickNote = form?.quickNote?.value;
 
-        if (user?.email === email) {
-            setError(true);
-            return 
-        };
-
+        
         const submittedData = {
             assignmentId: _id,
+            name,
             googleDocs,
             email,
             quickNote,
@@ -97,15 +94,15 @@ const ViewAssignments = () => {
                         <form onSubmit={handleAssignmentSubmit} className="card-body">
                             <div className="form-control">
                                 <label className="label">
-                                    <span className="label-text">Google Docs Link</span>
+                                    <span className="label-text">Name</span>
                                 </label>
-                                <input type="url" name='googleDocs' placeholder="Google Docs Link" className="input input-bordered" required />
+                                <input type="text" name='name' placeholder="Enter Your Name" className="input input-bordered" required />
                             </div>
                             <div className="form-control">
                                 <label className="label">
-                                    <span className="label-text">Email</span>
+                                    <span className="label-text">Google Docs Link</span>
                                 </label>
-                                <input type="email" name='email' placeholder="email" className="input input-bordered" required />
+                                <input type="url" name='googleDocs' placeholder="Google Docs Link" className="input input-bordered" required />
                             </div>
                             <div className="form-control">
                                 <label htmlFor="quickNote" className="block">Quick Note</label>
@@ -117,9 +114,6 @@ const ViewAssignments = () => {
                                     required
                                 />
                             </div>
-                                {
-                                    error && <p className='text-red-500 text-sm'>You Can not take Your own Assignment</p>
-                                }
                             <div className="modal-action form-control">
                                 <button className="btn" type='submit'>Submit Assignment</button>
                             </div>

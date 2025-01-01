@@ -1,62 +1,54 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { MdOutlinePendingActions } from "react-icons/md";
-import { TiTick } from "react-icons/ti";
 import useAuth from '../../hooks/useAuth';
 
-
-
-const MySubmittedAssignment = () => {
-    const [submitted, setSubmitted] = useState([]);
-    const {user} = useAuth()
+const PendingAssignments = () => {
+    const [pending, setPending] = useState([]);
+    const { user } = useAuth();
     useEffect(() => {
-        axios.get(`http://localhost:5000/mySubmission?email=${user?.email}`)
+        axios.get(`http://localhost:5000/pending?email=${user?.email}`)
             .then(res => {
-                setSubmitted(res.data);
+                setPending(res.data);
             })
     }, [])
     return (
         <div>
             <div className="overflow-x-auto">
                 <table className="table">
+                    {/* head */}
                     <thead>
                         <tr>
-                            <th>Assignment Title</th>
+                            <th>Assignment Name</th>
                             <th>Assignment Marks</th>
-                            <th>Obtain Marks</th>
-                            <th>Feedback</th>
+                            <th>Examinee Name</th>
+                            <th>Give Mark</th>
                         </tr>
                     </thead>
                     <tbody>
+                        {/* row 1 */}
                         {
-                            submitted.map(assignment => <tr key={assignment?._id}>
+                            pending.map(assignment => <tr key={assignment?._id}>
+                              
                                 <td>
                                     <div className="flex items-center gap-3">
                                         <div className="avatar">
                                             <div className="mask mask-squircle h-12 w-12">
                                                 <img
                                                     src={assignment?.imgUrl}
-                                                    alt="Avatar Tailwind CSS Component" />
+                                                    alt="" />
                                             </div>
                                         </div>
                                         <div>
                                             <div className="font-bold">{assignment?.title}</div>
-                                            <div className="text-base flex justify-start items-center gap-1 opacity-50">{assignment?.status}
-                                                <span className={assignment?.status === 'Pending' ? 'text-red-500 text-lg font-semibold' : 'text-green-500 text-lg font-semibold'}>{assignment?.status === 'Pending' ? <MdOutlinePendingActions /> : <TiTick />
-                                                }</span>
-                                            </div>
                                         </div>
                                     </div>
                                 </td>
-
                                 <td>
-                                    {assignment?.marks}
+                                   {assignment?.marks}
                                 </td>
-
-                                <td>{assignment?.obtainMarks}</td>
-
+                                <td>{assignment?.name}</td>
                                 <th>
-                                    <button className="btn btn-ghost btn-xs">{assignment?.feedback}</button>
+                                    <button className="btn  btn-xs">Give Mark</button>
                                 </th>
                             </tr>)
                         }
@@ -67,4 +59,4 @@ const MySubmittedAssignment = () => {
     );
 };
 
-export default MySubmittedAssignment;
+export default PendingAssignments;

@@ -42,6 +42,10 @@ const Header = () => {
             user && user?.email && 
             <li><NavLink to='/mySubmission'>My Submitted Assignment</NavLink></li>
         }
+        {
+            user && user?.email && 
+            <li><NavLink to='/pendingAssignments'>Pending Assignments</NavLink></li>
+        }
     </>
     return (
         <div>
