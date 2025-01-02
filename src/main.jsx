@@ -15,6 +15,7 @@ import ViewAssignments from './Components/ViewAssignments/ViewAssignments.jsx';
 import MySubmittedAssignment from './Components/MySubmittedAssignment/MySubmittedAssignment.jsx';
 import PendingAssignments from './Components/PendingAssignments/PendingAssignments.jsx';
 import GIveMark from './Components/GiveMark/GIveMark.jsx';
+import UpdateAssignment from './Components/UpdateAssignment/UpdateAssignment.jsx';
 
 const router = createBrowserRouter([
   {
@@ -51,6 +52,11 @@ const router = createBrowserRouter([
       {
         path:'/giveMark/:id',
         element:<PrivateRoute><GIveMark></GIveMark></PrivateRoute>
+      },
+      {
+        path:'/updateAssignment/:id',
+        element:<PrivateRoute><UpdateAssignment></UpdateAssignment></PrivateRoute>,
+        loader: ({params}) => fetch(`http://localhost:5000/assignments/${params.id}`)
       },
       {
         path:'/signIn',

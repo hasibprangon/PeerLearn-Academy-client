@@ -83,11 +83,11 @@ const AssignmentsCards = ({ assignment, handleDeleteAssignments }) => {
                             View Assignment
                         </button>
                     </Link>
-                    <button
+                    <Link to={`/updateAssignment/${_id}`}
                         className="btn btn-outline btn-warning text-white text-base font-semibold w-5/12"
                     >
                         Update
-                    </button>
+                    </Link>
                     <button
                         className="btn btn-outline btn-error text-white text-base font-semibold w-5/12"
                         onClick={() => handleDelete(_id, creatorData?.creatorEmail)}
