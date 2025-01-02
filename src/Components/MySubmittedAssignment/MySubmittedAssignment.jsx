@@ -3,18 +3,22 @@ import React, { useEffect, useState } from 'react';
 import { MdOutlinePendingActions } from "react-icons/md";
 import { TiTick } from "react-icons/ti";
 import useAuth from '../../hooks/useAuth';
+import useAxiosSecure from '../../hooks/useAxiosSecure';
 
 
 
 const MySubmittedAssignment = () => {
     const [submitted, setSubmitted] = useState([]);
-    const {user} = useAuth()
+    const { user } = useAuth();
+    const axiosSecure = useAxiosSecure();
     useEffect(() => {
-        axios.get(`http://localhost:5000/mySubmission?email=${user?.email}`)
+        axiosSecure.get(`/mySubmission?email=${user?.email}`)
             .then(res => {
                 setSubmitted(res.data);
             })
-    }, [])
+    }, [user?.email]);
+
+    
     return (
         <div>
             <div className="overflow-x-auto">
