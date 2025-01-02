@@ -2,11 +2,13 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import useAuth from '../../hooks/useAuth';
 
 const GIveMark = () => {
     const [assignment, setAssignment] = useState([]);
     const { id } = useParams();
     const navigate  =  useNavigate();
+    const {user} = useAuth();
 
     useEffect(() => {
         axios.get(`http://localhost:5000/pending/${id}`)
