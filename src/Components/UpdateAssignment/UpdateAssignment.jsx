@@ -22,7 +22,6 @@ const UpdateAssignment = () => {
         const updateInfo = {
             title, description, imgUrl, marks, difficulty, dueDate
         };
-        console.log(updateInfo)
 
         axios.put(`http://localhost:5000/update/${_id}`, updateInfo)
         .then(res => {

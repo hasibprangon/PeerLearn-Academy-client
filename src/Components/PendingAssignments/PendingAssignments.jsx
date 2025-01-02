@@ -2,16 +2,18 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import useAuth from '../../hooks/useAuth';
 import { Link } from 'react-router-dom';
+import useAxiosSecure from '../../hooks/useAxiosSecure';
 
 const PendingAssignments = () => {
     const [pending, setPending] = useState([]);
     const { user } = useAuth();
+    const axiosSecure = useAxiosSecure();
     useEffect(() => {
-        axios.get(`http://localhost:5000/pending?email=${user?.email}`)
-            .then(res => {
-                setPending(res.data);
-            })
-    }, [])
+        axiosSecure.get(`/pending?email=${user?.email}`)
+        .then(res => {
+            setPending(res.data);
+        })
+    }, [user?.email])
     return (
         <div>
             <div className="overflow-x-auto">

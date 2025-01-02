@@ -8,7 +8,6 @@ const Assignments = () => {
     const [assignments, setAssignments] = useState(data);
     const [difficulty, setDifficulty] = useState('all');
     const [search, setSearch] = useState('');
-    console.log(search);
 
     const handleDeleteAssignments = id => {
         const remaining = assignments.filter(info => info._id !== id);

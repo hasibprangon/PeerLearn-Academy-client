@@ -9,7 +9,6 @@ const AssignmentsCards = ({ assignment, handleDeleteAssignments }) => {
     const { user } = useAuth();
 
     const handleDelete = (id, email) => {
-        console.log(email, user?.email);
         if (user?.email === email) {
             Swal.fire({
                 title: "Are you sure?",
