@@ -30,7 +30,7 @@ const ViewAssignments = () => {
 
 
         const submittedData = {
-            assignmentId: _id,
+            assignmentId: params.id,
             name,
             googleDocs,
             email,
@@ -38,7 +38,7 @@ const ViewAssignments = () => {
             status: 'Pending',
             obtainMarks: "",
             feedback: "",
-            marks
+            marks: data?.marks
         };
         axiosSecure.post(`/submittedAssignment`, submittedData)
             .then(res => {
