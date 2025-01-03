@@ -1,0 +1,45 @@
+[
+    {
+      "id": 1,
+      "title": "Create Assignments",
+      "description": "Easily create assignments and share them with friends.",
+      "icon": "📝"
+    },
+    {
+      "id": 2,
+      "title": "Collaborate in Real-Time",
+      "description": "Work on group assignments together in real-time.",
+      "icon": "🤝"
+    },
+    {
+      "id": 3,
+      "title": "Grade with Ease",
+      "description": "Grade your friends’ assignments and get feedback on yours.",
+      "icon": "✅"
+    },
+    {
+      "id": 4,
+      "title": "Track Progress",
+      "description": "Monitor your assignment submissions and grades over time.",
+      "icon": "📊"
+    },
+    {
+      "id": 5,
+      "title": "Custom Deadlines",
+      "description": "Set deadlines for your assignments and receive reminders.",
+      "icon": "⏰"
+    },
+    {
+      "id": 6,
+      "title": "Secure and Reliable",
+      "description": "Your data is protected with industry-standard security measures.",
+      "icon": "🔒"
+    },
+    {
+      "id": 7,
+      "title": "Mobile Friendly",
+      "description": "Access the platform on the go with a fully responsive design.",
+      "icon": "📱"
+    }
+  ]
+  

@@ -4,10 +4,12 @@ import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 import { useLoaderData } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import useAxiosSecure from '../../hooks/useAxiosSecure';
 
 const UpdateAssignment = () => {
     const { _id, title, description, imgUrl, marks, difficulty, creatorData, dueDate } = useLoaderData();
     const [startDate, setStartDate] = useState(new Date(dueDate));
+    const axiosSecure = useAxiosSecure();
 
     const handleUpdate = e => {
         e.preventDefault();
@@ -23,17 +25,18 @@ const UpdateAssignment = () => {
             title, description, imgUrl, marks, difficulty, dueDate
         };
 
-        axios.put(`http://localhost:5000/update/${_id}`, updateInfo)
-        .then(res => {
-            if(res?.data?.modifiedCount > 0) {
-                Swal.fire({
-                    title: 'Success!',
-                    text: 'Assignment Updated Successfully',
-                    icon: 'success',
-                    confirmButtonText: 'Cool'
-                }) 
-            }
-        })
+        axiosSecure.put(`/update/${_id}`, updateInfo)
+            .then(res => {
+                if (res?.data?.modifiedCount > 0) {
+                    Swal.fire({
+                        title: 'Success!',
+                        text: 'Assignment Updated Successfully',
+                        icon: 'success',
+                        confirmButtonText: 'Cool'
+                    })
+                }
+            })
+
 
     }
 
@@ -130,7 +133,7 @@ const UpdateAssignment = () => {
                     />
                 </div>
                 <div className="form-control mt-6">
-                    <button  className="btn btn-outline btn-accent">
+                    <button className="btn btn-outline btn-accent">
                         Update Assignment
                     </button>
                 </div>

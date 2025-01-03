@@ -3,19 +3,22 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import useAuth from '../../hooks/useAuth';
+import useAxiosSecure from '../../hooks/useAxiosSecure';
 
 const GIveMark = () => {
     const [assignment, setAssignment] = useState([]);
+    console.log(assignment);
     const { id } = useParams();
     const navigate  =  useNavigate();
     const {user} = useAuth();
+    const axiosSecure = useAxiosSecure();
 
     useEffect(() => {
-        axios.get(`http://localhost:5000/pending/${id}`)
-            .then(res => {
-                setAssignment(res.data);
-            })
-    }, [id]);
+        axiosSecure.get(`/pending`)
+        .then(res => {
+            setAssignment(res.data);
+        })
+    }, []);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -29,7 +32,7 @@ const GIveMark = () => {
             status
         }
 
-        if(assignment?.email === user?.email) {
+        if(assignment[0]?.email === user?.email) {
             return  Swal.fire({
                 position: "top",
                 icon: "error",
@@ -39,7 +42,7 @@ const GIveMark = () => {
               });
         };
 
-        if(assignment?.marks < obtainMarks) {
+        if(assignment[0]?.marks < obtainMarks) {
             return Swal.fire({
                 position: "top",
                 icon: "error",
@@ -49,8 +52,8 @@ const GIveMark = () => {
               });
         }
 
-       axios.patch(`http://localhost:5000/giveMark/${id}`, giveMark)
-        .then(res => {
+    axiosSecure.patch(`/giveMark/${id}`, giveMark)
+         .then(res => {
             if(res?.data?.modifiedCount){
                 Swal.fire({
                     position: "top",
@@ -65,6 +68,7 @@ const GIveMark = () => {
           
         })
 
+
     }
 
     return (
@@ -75,17 +79,17 @@ const GIveMark = () => {
                     <p>
                         <span className="font-semibold">Google Docs Link: </span>
                         <a
-                            href={assignment?.googleDocs}
+                            href={assignment[0]?.googleDocs}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="text-blue-500 underline"
                         >
-                            {assignment?.googleDocs}
+                            {assignment[0]?.googleDocs}
                         </a>
                     </p>
                     <p>
                         <span className="font-semibold">Quick Note: </span>
-                        {assignment?.quickNote}
+                        {assignment[0]?.quickNote}
                     </p>
                 </div>
             </div>

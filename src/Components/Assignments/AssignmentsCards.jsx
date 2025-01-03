@@ -3,10 +3,12 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import useAuth from '../../hooks/useAuth';
+import useAxiosSecure from '../../hooks/useAxiosSecure';
 
 const AssignmentsCards = ({ assignment, handleDeleteAssignments }) => {
     const { _id, title, description, imgUrl, marks, difficulty, creatorData, dueDate } = assignment;
     const { user } = useAuth();
+    const axiosSecure = useAxiosSecure();
 
     const handleDelete = (id, email) => {
         if (user?.email === email) {

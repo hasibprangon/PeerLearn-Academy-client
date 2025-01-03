@@ -9,7 +9,7 @@ const PendingAssignments = () => {
     const { user } = useAuth();
     const axiosSecure = useAxiosSecure();
     useEffect(() => {
-        axiosSecure.get(`/pending?email=${user?.email}`)
+        axiosSecure.get(`/pending`)
         .then(res => {
             setPending(res.data);
         })

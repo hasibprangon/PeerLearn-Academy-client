@@ -5,11 +5,14 @@ import useAuth from '../../hooks/useAuth';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
+import useAxiosSecure from '../../hooks/useAxiosSecure';
 
 const CreateAssignment = () => {
     const [startDate, setStartDate] = useState(new Date());
     const { user } = useAuth();
-    const navigate = useNavigate()
+    const navigate = useNavigate();
+    const axiosSecure = useAxiosSecure();
+
     const handleSubmit = e => {
         e.preventDefault();
         const form = e.target;
@@ -32,8 +35,7 @@ const CreateAssignment = () => {
             creatorData,
             dueDate
         }
-
-        axios.post(`http://localhost:5000/createAssignment`, info)
+        axiosSecure.post(`/createAssignment`, info)
             .then(res => {
                 if (res?.data?.insertedId) {
                     Swal.fire({

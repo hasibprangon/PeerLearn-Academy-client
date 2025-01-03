@@ -4,22 +4,24 @@ import useAuth from '../../hooks/useAuth';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import toast from 'react-hot-toast';
+import useAxiosSecure from '../../hooks/useAxiosSecure';
 
 const ViewAssignments = () => {
     const data = useLoaderData()
     const { _id, title, description, imgUrl, marks, difficulty, creatorData, dueDate } = data;
     const { user } = useAuth();
     const navigate = useNavigate();
+    const axiosSecure = useAxiosSecure();
 
     const handleAssignmentSubmit = e => {
         e.preventDefault()
         const form = e.target;
-        const name  = form?.name?.value;
+        const name = form?.name?.value;
         const googleDocs = form?.googleDocs?.value;
         const email = user?.email;
         const quickNote = form?.quickNote?.value;
 
-        
+
         const submittedData = {
             assignmentId: _id,
             name,
@@ -31,8 +33,7 @@ const ViewAssignments = () => {
             feedback: "",
             marks
         };
-
-        axios.post(`http://localhost:5000/submittedAssignment`, submittedData)
+        axiosSecure.post(`/submittedAssignment`, submittedData)
             .then(res => {
                 if (res?.data?.insertedId) {
                     Swal.fire({
