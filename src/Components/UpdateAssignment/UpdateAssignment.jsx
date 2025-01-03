@@ -1,16 +1,39 @@
 import axios from 'axios';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
-import { useLoaderData } from 'react-router-dom';
+import { useLoaderData, useParams } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
 import { Helmet } from 'react-helmet-async';
 
 const UpdateAssignment = () => {
-    const { _id, title, description, imgUrl, marks, difficulty, creatorData, dueDate } = useLoaderData();
-    const [startDate, setStartDate] = useState(new Date(dueDate));
+    const [data, setData] = useState(null);
+    const params = useParams()
+    const [startDate, setStartDate] = useState(null);
     const axiosSecure = useAxiosSecure();
+
+    const [selectedDifficulty, setSelectedDifficulty] = useState('');
+
+    useEffect(() => {
+        if (data?.difficulty) {
+            setSelectedDifficulty(data.difficulty);
+        }
+    }, [data]);
+
+    useEffect(() => {
+        axiosSecure.get(`/assignments/${params.id}`)
+            .then(res => {
+                setData(res?.data)
+            })
+    }, [params.id])
+
+    useEffect(() => {
+        if (data?.dueDate) {
+            setStartDate(new Date(data.dueDate)); 
+        }
+    }, [data?.dueDate]);
+
 
     const handleUpdate = e => {
         e.preventDefault();
@@ -26,7 +49,7 @@ const UpdateAssignment = () => {
             title, description, imgUrl, marks, difficulty, dueDate
         };
 
-        axiosSecure.put(`/update/${_id}`, updateInfo)
+        axiosSecure.put(`/update/${params.id}`, updateInfo)
             .then(res => {
                 if (res?.data?.modifiedCount > 0) {
                     Swal.fire({
@@ -55,7 +78,7 @@ const UpdateAssignment = () => {
                     <input
                         type="text"
                         name='title'
-                        defaultValue={title}
+                        defaultValue={data?.title}
                         placeholder="Enter assignment title"
                         className="input input-bordered border-2 bg-transparent focus:outline-none focus:ring-2 focus:ring-purple-300"
                         required
@@ -69,7 +92,7 @@ const UpdateAssignment = () => {
                     <textarea
                         placeholder="Enter assignment description"
                         name='description'
-                        defaultValue={description}
+                        defaultValue={data?.description}
                         className="textarea textarea-bordered border-2 bg-transparent focus:outline-none focus:ring-2 focus:ring-purple-300"
                         rows="4"
                         required
@@ -83,7 +106,7 @@ const UpdateAssignment = () => {
                     <input
                         type="number"
                         name='marks'
-                        defaultValue={marks}
+                        defaultValue={data?.marks}
                         placeholder="Enter total marks"
                         className="input input-bordered border-2 bg-transparent focus:outline-none focus:ring-2 focus:ring-purple-300"
                         required
@@ -97,7 +120,7 @@ const UpdateAssignment = () => {
                     <input
                         type="url"
                         name='imgUrl'
-                        defaultValue={imgUrl}
+                        defaultValue={data?.imgUrl}
                         placeholder="Enter image URL"
                         className="input input-bordered border-2 bg-transparent focus:outline-none focus:ring-2 focus:ring-purple-300"
                         required
@@ -110,7 +133,8 @@ const UpdateAssignment = () => {
                     </label>
                     <select
                         name='difficulty'
-                        defaultValue={difficulty}
+                        value={selectedDifficulty || ''}
+                        onChange={(e) => setSelectedDifficulty(e.target.value)}
                         className="select select-bordered border-2 bg-transparent focus:outline-none focus:ring-2 focus:ring-purple-300"
                         required
                     >

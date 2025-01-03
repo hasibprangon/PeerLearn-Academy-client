@@ -1,18 +1,24 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useLoaderData, useNavigate, useParams } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
 import axios from 'axios';
 import Swal from 'sweetalert2';
-import toast from 'react-hot-toast';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
 import { Helmet } from 'react-helmet-async';
 
 const ViewAssignments = () => {
-    const data = useLoaderData()
-    const { _id, title, description, imgUrl, marks, difficulty, creatorData, dueDate } = data;
+    const [data, setData] = useState(null);
     const { user } = useAuth();
+    const params = useParams()
     const navigate = useNavigate();
     const axiosSecure = useAxiosSecure();
+
+    useEffect(() => {
+        axiosSecure.get(`/assignments/${params.id}`)
+        .then(res => {
+            setData(res?.data)
+        })
+    },[])
 
     const handleAssignmentSubmit = e => {
         e.preventDefault()
@@ -71,26 +77,26 @@ const ViewAssignments = () => {
             <div className="card w-96 md:w-[420px] lg:w-[500px] bg-base-100 shadow-xl mx-auto my-8 ">
                 <figure className="relative h-96">
                     <img
-                        src={imgUrl}
-                        alt={title}
+                        src={data?.imgUrl}
+                        alt={data?.title}
                         className="h-full w-full object-cover rounded-t-xl"
                     />
                 </figure>
                 <div className="card-body">
-                    <h2 className="card-title text-xl md:text-2xl lg:text-4xl font-bold">{title}</h2>
-                    <p className="text-sm md:text-base lg:text-lg">{description}</p>
+                    <h2 className="card-title text-xl md:text-2xl lg:text-4xl font-bold">{data?.title}</h2>
+                    <p className="text-sm md:text-base lg:text-lg">{data?.description}</p>
                     <div className="mt-4">
                         <p className="text-sm md:text-base lg:text-lg">
-                            <span className="font-semibold">Marks:</span> {marks}
+                            <span className="font-semibold">Marks:</span> {data?.marks}
                         </p>
                         <p className="text-sm md:text-base lg:text-lg">
-                            <span className="font-semibold">Due Date:</span> {dueDate}
+                            <span className="font-semibold">Due Date:</span> {data?.dueDate}
                         </p>
                         <p className="text-sm md:text-base lg:text-lg">
-                            <span className="font-semibold">Difficulty:</span> {difficulty}
+                            <span className="font-semibold">Difficulty:</span> {data?.difficulty}
                         </p>
                         <p className="text-sm md:text-base lg:text-lg">
-                            <span className="font-semibold">Created by:</span> {creatorData?.creatorName}
+                            <span className="font-semibold">Created by:</span> {data?.creatorData?.creatorName}
                         </p>
                     </div>
                     <div className="card-actions justify-center mt-4">
