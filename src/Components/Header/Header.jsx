@@ -35,14 +35,7 @@ const Header = ({ handleTheme }) => {
     const links = <>
         <li><NavLink to='/'>Home</NavLink></li>
         <li><NavLink to='/assignments'>Assignments</NavLink></li>
-        {
-            user && user?.email &&
-            <li><NavLink to='/createAssignment'>Create Assignment</NavLink></li>
-        }
-        {
-            user && user?.email &&
-            <li><NavLink to='/mySubmission'>My Submitted Assignment</NavLink></li>
-        }
+       
         {
             user && user?.email &&
             <li><NavLink to='/pendingAssignments'>Pending Assignments</NavLink></li>
@@ -126,6 +119,14 @@ const Header = ({ handleTheme }) => {
                                         >
                                             <div className="p-4 border-b text-center">
                                                 <p className="text-sm text-gray-700">{user?.displayName}</p>
+                                                {
+                                                    user && user?.email &&
+                                                    <NavLink className='btn btn-xs' to='/createAssignment'>Create Assignment</NavLink>
+                                                }
+                                                {
+                                                    user && user?.email &&
+                                                    <NavLink className='btn btn-xs' to='/mySubmission'>My Submitted Assignment</NavLink>
+                                                }
                                             </div>
                                             <div className='text-center'>
                                                 <button className="btn" onClick={handleSignOut}>
