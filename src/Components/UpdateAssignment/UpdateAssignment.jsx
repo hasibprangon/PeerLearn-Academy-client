@@ -5,6 +5,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import { useLoaderData } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
+import { Helmet } from 'react-helmet-async';
 
 const UpdateAssignment = () => {
     const { _id, title, description, imgUrl, marks, difficulty, creatorData, dueDate } = useLoaderData();
@@ -42,6 +43,9 @@ const UpdateAssignment = () => {
 
     return (
         <div className="card w-full max-w-md mx-auto shadow-xl rounded-lg p-6 my-5">
+            <Helmet>
+                <title>Update Assignment</title>
+            </Helmet>
             <form onSubmit={handleUpdate} className="space-y-5">
                 {/* title */}
                 <div className="form-control">

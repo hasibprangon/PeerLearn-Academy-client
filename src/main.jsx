@@ -16,55 +16,56 @@ import MySubmittedAssignment from './Components/MySubmittedAssignment/MySubmitte
 import PendingAssignments from './Components/PendingAssignments/PendingAssignments.jsx';
 import GIveMark from './Components/GiveMark/GIveMark.jsx';
 import UpdateAssignment from './Components/UpdateAssignment/UpdateAssignment.jsx';
+import { HelmetProvider } from 'react-helmet-async';
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <Default></Default>,
-    errorElement:<Error></Error>,
+    errorElement: <Error></Error>,
     children: [
       {
         path: '/',
         element: <Home></Home>
       },
       {
-        path:'/assignments',
-        element:<Assignments></Assignments>,
+        path: '/assignments',
+        element: <Assignments></Assignments>,
         loader: () => fetch(`http://localhost:5000/assignments`)
       },
       {
-        path:'/mySubmission',
-        element:<PrivateRoute><MySubmittedAssignment></MySubmittedAssignment></PrivateRoute>
+        path: '/mySubmission',
+        element: <PrivateRoute><MySubmittedAssignment></MySubmittedAssignment></PrivateRoute>
       },
       {
-        path:'/viewAssignments/:id',
-        element:<PrivateRoute><ViewAssignments></ViewAssignments></PrivateRoute>,
-        loader:({params}) => fetch(`http://localhost:5000/assignments/${params.id}`)
+        path: '/viewAssignments/:id',
+        element: <PrivateRoute><ViewAssignments></ViewAssignments></PrivateRoute>,
+        loader: ({ params }) => fetch(`http://localhost:5000/assignments/${params.id}`)
       },
       {
-        path:'/createAssignment',
-        element:<PrivateRoute><CreateAssignment></CreateAssignment></PrivateRoute>
+        path: '/createAssignment',
+        element: <PrivateRoute><CreateAssignment></CreateAssignment></PrivateRoute>
       },
       {
-        path:'/pendingAssignments',
-        element:<PrivateRoute><PendingAssignments></PendingAssignments></PrivateRoute>
+        path: '/pendingAssignments',
+        element: <PrivateRoute><PendingAssignments></PendingAssignments></PrivateRoute>
       },
       {
-        path:'/giveMark/:id',
-        element:<PrivateRoute><GIveMark></GIveMark></PrivateRoute>
+        path: '/giveMark/:id',
+        element: <PrivateRoute><GIveMark></GIveMark></PrivateRoute>
       },
       {
-        path:'/updateAssignment/:id',
-        element:<PrivateRoute><UpdateAssignment></UpdateAssignment></PrivateRoute>,
-        loader: ({params}) => fetch(`http://localhost:5000/assignments/${params.id}`)
+        path: '/updateAssignment/:id',
+        element: <PrivateRoute><UpdateAssignment></UpdateAssignment></PrivateRoute>,
+        loader: ({ params }) => fetch(`http://localhost:5000/assignments/${params.id}`)
       },
       {
-        path:'/signIn',
-        element:<SignIn></SignIn>
+        path: '/signIn',
+        element: <SignIn></SignIn>
       },
       {
-        path:'/register',
-        element:<Register></Register>
+        path: '/register',
+        element: <Register></Register>
       },
     ]
   }
@@ -72,8 +73,10 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-   <AuthContextProvider>
-   <RouterProvider router={router}></RouterProvider>
-   </AuthContextProvider>
+    <HelmetProvider>
+      <AuthContextProvider>
+        <RouterProvider router={router}></RouterProvider>
+      </AuthContextProvider>
+    </HelmetProvider>
   </StrictMode>,
 )

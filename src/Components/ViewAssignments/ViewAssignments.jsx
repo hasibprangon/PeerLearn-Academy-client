@@ -5,6 +5,7 @@ import axios from 'axios';
 import Swal from 'sweetalert2';
 import toast from 'react-hot-toast';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
+import { Helmet } from 'react-helmet-async';
 
 const ViewAssignments = () => {
     const data = useLoaderData()
@@ -63,6 +64,9 @@ const ViewAssignments = () => {
 
     return (
         <div>
+            <Helmet>
+                <title>View Assignment</title>
+            </Helmet>
             <h2 className='text-xl md:text-2xl lg:text-4xl font-bold text-center my-5'>Assignment Details</h2>
             <div className="card w-96 md:w-[420px] lg:w-[500px] bg-base-100 shadow-xl mx-auto my-8 ">
                 <figure className="relative h-96">

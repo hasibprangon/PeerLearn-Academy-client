@@ -4,6 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import useAuth from '../../hooks/useAuth';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
+import { Helmet } from 'react-helmet-async';
 
 const GIveMark = () => {
     const [assignment, setAssignment] = useState([]);
@@ -73,6 +74,9 @@ const GIveMark = () => {
 
     return (
         <div className="container mx-auto my-8">
+            <Helmet>
+                <title>Give Mark</title>
+            </Helmet>
             <h2 className="text-2xl font-bold mb-4">Mark Assignment</h2>
             <div className="card w-full bg-base-100 shadow-xl">
                 <div className="card-body">

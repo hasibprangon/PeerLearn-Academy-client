@@ -4,6 +4,7 @@ import { MdOutlinePendingActions } from "react-icons/md";
 import { TiTick } from "react-icons/ti";
 import useAuth from '../../hooks/useAuth';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
+import { Helmet } from 'react-helmet-async';
 
 
 
@@ -21,6 +22,9 @@ const MySubmittedAssignment = () => {
     
     return (
         <div className='my-10'>
+            <Helmet>
+                <title>Submitted</title>
+            </Helmet>
             <h2 className='text-xl md:text-2xl lg:text-4xl font-bold text-center my-5'>Your Submitted Assignment</h2>
             <div className="overflow-x-auto">
                 <table className="table">

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import AssignmentsCards from './AssignmentsCards';
 import axios from 'axios';
+import { Helmet } from 'react-helmet-async';
 
 const Assignments = () => {
     const data = useLoaderData();
@@ -38,6 +39,9 @@ const Assignments = () => {
 
     return (
         <div>
+            <Helmet>
+                <title>Assignment</title>
+            </Helmet>
             <h2 className="lg:text-4xl md:text-2xl text-xl text-center my-9 font-semibold text-zinc-500">All Assignments here</h2>
 
             <div className="flex flex-col md:flex-row lg:flex-row items-center justify-center gap-5 mb-5 container mx-auto ml-4 md:ml-0 lg:ml-0">

@@ -6,6 +6,7 @@ import { FcGoogle } from 'react-icons/fc';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import animation from '../../../assets/Animation/Register Animation.json'
 import Lottie from 'lottie-react';
+import { Helmet } from 'react-helmet-async';
 
 const Register = () => {
     const { setUser, handleCreateUser, signInWithGoogle, updateUserProfile } = useContext(AuthContext);
@@ -95,6 +96,9 @@ const Register = () => {
     }
     return (
         <div className="hero p-5 my-5">
+            <Helmet>
+                <title>Register</title>
+            </Helmet>
             <div className="hero-content flex-col lg:flex-row-reverse">
                 <div className="text-center lg:text-left lg:w-[500px] md:w-[400px] w-64">
                     <Lottie

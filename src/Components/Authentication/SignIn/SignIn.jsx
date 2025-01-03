@@ -6,6 +6,7 @@ import { AuthContext } from '../../../Provider/AuthContextProvider';
 import Swal from 'sweetalert2';
 import { FcGoogle } from 'react-icons/fc';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import { Helmet } from 'react-helmet-async';
 
 const SignIn = () => {
     const { setUser, handleSignInUser, signInWithGoogle } = useContext(AuthContext);
@@ -70,6 +71,9 @@ const SignIn = () => {
     };
     return (
         <div className="hero bg-base-200 min-h-screen my-5">
+            <Helmet>
+                <title>Sign In</title>
+            </Helmet>
             <div className="hero-content flex-col lg:flex-row-reverse">
                 <div className="text-center lg:text-left">
                     <Lottie

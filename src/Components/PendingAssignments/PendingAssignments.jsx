@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import useAuth from '../../hooks/useAuth';
 import { Link } from 'react-router-dom';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
+import { Helmet } from 'react-helmet-async';
 
 const PendingAssignments = () => {
     const [pending, setPending] = useState([]);
@@ -16,6 +17,9 @@ const PendingAssignments = () => {
     }, [user?.email])
     return (
         <div className='my-10'>
+            <Helmet>
+                <title>Pending</title>
+            </Helmet>
             <h2 className='text-xl md:text-2xl lg:text-4xl font-bold text-center my-5'>All pending Assignment</h2>
             <div className="overflow-x-auto">
                 <table className="table">

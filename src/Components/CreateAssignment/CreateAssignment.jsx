@@ -6,6 +6,7 @@ import axios from 'axios';
 import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
+import { Helmet } from 'react-helmet-async';
 
 const CreateAssignment = () => {
     const [startDate, setStartDate] = useState(new Date());
@@ -63,6 +64,9 @@ const CreateAssignment = () => {
 
     return (
         <div className="card w-full max-w-md mx-auto shadow-xl rounded-lg p-6 my-5">
+            <Helmet>
+                <title>Create Assignment</title>
+            </Helmet>
             <h2 className="text-3xl font-bold text-center mb-6">Create Assignment</h2>
             <form onSubmit={handleSubmit} className="space-y-5">
                 {/* title */}
