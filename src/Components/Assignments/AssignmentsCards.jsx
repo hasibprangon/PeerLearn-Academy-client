@@ -22,7 +22,7 @@ const AssignmentsCards = ({ assignment, handleDeleteAssignments }) => {
                 confirmButtonText: "Yes, delete it!"
             }).then((result) => {
                 if (result.isConfirmed) {
-                    axios.delete(`http://localhost:5000/assignments/${id}`)
+                    axiosSecure.delete(`/assignments/${id}`)
                         .then(res => {
                             if (res?.data?.deletedCount > 0) {
                                 Swal.fire({
@@ -37,7 +37,8 @@ const AssignmentsCards = ({ assignment, handleDeleteAssignments }) => {
                 }
             });
         }
-         else { Swal.fire({
+        else {
+            Swal.fire({
                 position: "top",
                 icon: "error",
                 title: "You are not the assignment creator",
@@ -45,7 +46,7 @@ const AssignmentsCards = ({ assignment, handleDeleteAssignments }) => {
                 timer: 1500
             });
         }
-        
+
     }
     return (
         <div className="card w-96 bg-base-100 shadow-xl hover:shadow-2xl transition-shadow mx-auto">
