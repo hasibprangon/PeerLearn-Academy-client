@@ -5,7 +5,7 @@ import useAuth from '../../hooks/useAuth';
 const Banner = () => {
     const { user } = useAuth();
     return (
-        <div className="bg-purple-500 text-white py-20 px-6">
+        <div className="bg-purple-500 text-white py-20 px-6 my-5">
             <div className="container mx-auto text-center">
                 <h1 className="text-4xl md:text-6xl font-bold mb-4">
                     Collaborate, Learn, and Succeed with Friends!

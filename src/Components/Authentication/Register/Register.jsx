@@ -25,6 +25,7 @@ const Register = () => {
                     showConfirmButton: false,
                     timer: 1500
                 });
+                navigate('/');
             })
             .catch(err => {
                 Swal.fire({
@@ -95,14 +96,14 @@ const Register = () => {
     return (
         <div className="hero p-5 my-5">
             <div className="hero-content flex-col lg:flex-row-reverse">
-                <div className="text-center lg:text-left w-[500px]">
+                <div className="text-center lg:text-left lg:w-[500px] md:w-[400px] w-64">
                     <Lottie
                         animationData={animation}
                         loop={true}
                     ></Lottie>
                 </div>
-                <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
-                    <h1 className="text-4xl font-bold mb-8 text-center">Register now!</h1>
+                <div className="card bg-base-100 lg:w-[500px] md:w-[450px]  mr-8 shrink-0 shadow-2xl">
+                    <h1 className="text-4xl font-bold my-8 text-center">Register now!</h1>
                     <form onSubmit={handleRegister} className="card-body">
                         {/* Name */}
                         <div className="form-control">

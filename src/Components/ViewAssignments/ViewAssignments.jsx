@@ -62,67 +62,70 @@ const ViewAssignments = () => {
 
 
     return (
-        <div className="card w-96 bg-base-100 shadow-xl mx-auto my-8 ">
-            <figure className="relative h-64">
-                <img
-                    src={imgUrl}
-                    alt={title}
-                    className="h-full w-full object-cover rounded-t-xl"
-                />
-            </figure>
-            <div className="card-body">
-                <h2 className="card-title text-xl font-bold">{title}</h2>
-                <p className="text-sm text-gray-600">{description}</p>
-                <div className="mt-4">
-                    <p className="text-sm">
-                        <span className="font-semibold">Marks:</span> {marks}
-                    </p>
-                    <p className="text-sm">
-                        <span className="font-semibold">Due Date:</span> {dueDate}
-                    </p>
-                    <p className="text-sm">
-                        <span className="font-semibold">Difficulty:</span> {difficulty}
-                    </p>
-                    <p className="text-sm">
-                        <span className="font-semibold">Created by:</span> {creatorData?.creatorName}
-                    </p>
-                </div>
-                <div className="card-actions justify-center mt-4">
-                    <button onClick={() => document.getElementById('my_modal_4').showModal()} className="btn btn-success text-white w-full">Take Assignment</button>
-                </div>
-
-                <dialog id="my_modal_4" className="modal">
-                    <div className="modal-box w-11/12 max-w-5xl">
-                        <form onSubmit={handleAssignmentSubmit} className="card-body">
-                            <div className="form-control">
-                                <label className="label">
-                                    <span className="label-text">Name</span>
-                                </label>
-                                <input type="text" name='name' placeholder="Enter Your Name" className="input input-bordered" required />
-                            </div>
-                            <div className="form-control">
-                                <label className="label">
-                                    <span className="label-text">Google Docs Link</span>
-                                </label>
-                                <input type="url" name='googleDocs' placeholder="Google Docs Link" className="input input-bordered" required />
-                            </div>
-                            <div className="form-control">
-                                <label htmlFor="quickNote" className="block">Quick Note</label>
-                                <textarea
-                                    name='quickNote'
-                                    id="quickNote"
-                                    className="textarea textarea-bordered w-full"
-                                    rows="4"
-                                    required
-                                />
-                            </div>
-                            <div className="modal-action form-control">
-                                <button className="btn" type='submit'>Submit Assignment</button>
-                            </div>
-                        </form>
-
+        <div>
+            <h2 className='text-xl md:text-2xl lg:text-4xl font-bold text-center my-5'>Assignment Details</h2>
+            <div className="card w-96 md:w-[420px] lg:w-[500px] bg-base-100 shadow-xl mx-auto my-8 ">
+                <figure className="relative h-96">
+                    <img
+                        src={imgUrl}
+                        alt={title}
+                        className="h-full w-full object-cover rounded-t-xl"
+                    />
+                </figure>
+                <div className="card-body">
+                    <h2 className="card-title text-xl md:text-2xl lg:text-4xl font-bold">{title}</h2>
+                    <p className="text-sm md:text-base lg:text-lg">{description}</p>
+                    <div className="mt-4">
+                        <p className="text-sm md:text-base lg:text-lg">
+                            <span className="font-semibold">Marks:</span> {marks}
+                        </p>
+                        <p className="text-sm md:text-base lg:text-lg">
+                            <span className="font-semibold">Due Date:</span> {dueDate}
+                        </p>
+                        <p className="text-sm md:text-base lg:text-lg">
+                            <span className="font-semibold">Difficulty:</span> {difficulty}
+                        </p>
+                        <p className="text-sm md:text-base lg:text-lg">
+                            <span className="font-semibold">Created by:</span> {creatorData?.creatorName}
+                        </p>
                     </div>
-                </dialog>
+                    <div className="card-actions justify-center mt-4">
+                        <button onClick={() => document.getElementById('my_modal_4').showModal()} className="btn btn-success text-white w-full">Take Assignment</button>
+                    </div>
+
+                    <dialog id="my_modal_4" className="modal">
+                        <div className="modal-box w-11/12 max-w-5xl">
+                            <form onSubmit={handleAssignmentSubmit} className="card-body">
+                                <div className="form-control">
+                                    <label className="label">
+                                        <span className="label-text">Name</span>
+                                    </label>
+                                    <input type="text" name='name' placeholder="Enter Your Name" className="input input-bordered" required />
+                                </div>
+                                <div className="form-control">
+                                    <label className="label">
+                                        <span className="label-text">Google Docs Link</span>
+                                    </label>
+                                    <input type="url" name='googleDocs' placeholder="Google Docs Link" className="input input-bordered" required />
+                                </div>
+                                <div className="form-control">
+                                    <label htmlFor="quickNote" className="block">Quick Note</label>
+                                    <textarea
+                                        name='quickNote'
+                                        id="quickNote"
+                                        className="textarea textarea-bordered w-full"
+                                        rows="4"
+                                        required
+                                    />
+                                </div>
+                                <div className="modal-action form-control">
+                                    <button className="btn" type='submit'>Submit Assignment</button>
+                                </div>
+                            </form>
+
+                        </div>
+                    </dialog>
+                </div>
             </div>
         </div>
     );

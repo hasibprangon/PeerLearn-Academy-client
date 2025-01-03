@@ -15,7 +15,8 @@ const PendingAssignments = () => {
         })
     }, [user?.email])
     return (
-        <div>
+        <div className='my-10'>
+            <h2 className='text-xl md:text-2xl lg:text-4xl font-bold text-center my-5'>All pending Assignment</h2>
             <div className="overflow-x-auto">
                 <table className="table">
                     {/* head */}

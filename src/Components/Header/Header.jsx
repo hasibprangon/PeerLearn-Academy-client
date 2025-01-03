@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { AuthContext } from '../../Provider/AuthContextProvider';
 import Swal from 'sweetalert2';
+import img from '../../../src/assets/peerLearnAcademy.png'
 
 const Header = ({ handleTheme }) => {
     const { user, signOutUser } = useContext(AuthContext);
@@ -71,7 +72,7 @@ const Header = ({ handleTheme }) => {
     </>
     return (
         <div>
-            <div className="navbar bg-base-100">
+            <div className="navbar bg-gradient-to-r from-indigo-500">
                 <div className="navbar-start">
                     <div className="dropdown">
                         <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -96,7 +97,7 @@ const Header = ({ handleTheme }) => {
                             }
                         </ul>
                     </div>
-                    <a className="text-xl">PeerLearn Academy</a>
+                    <img src={img} className='w-16' alt="" />
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1">

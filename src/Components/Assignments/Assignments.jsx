@@ -40,7 +40,10 @@ const Assignments = () => {
         <div>
             <h2 className="lg:text-4xl md:text-2xl text-xl text-center my-9 font-semibold text-zinc-500">All Assignments here</h2>
 
-            <div  className="flex items-center justify-center gap-5 mb-5">
+            <div className="flex flex-col md:flex-row lg:flex-row items-center justify-center gap-5 mb-5 container mx-auto ml-4 md:ml-0 lg:ml-0">
+                <label className="label font-bold">
+                    <span className="label-text">Filter By Difficulty :</span>
+                </label>
                 <select
                     value={difficulty}
                     onChange={handleDifficulty}

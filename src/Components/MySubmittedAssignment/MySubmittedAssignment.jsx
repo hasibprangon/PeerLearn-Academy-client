@@ -20,7 +20,8 @@ const MySubmittedAssignment = () => {
 
     
     return (
-        <div>
+        <div className='my-10'>
+            <h2 className='text-xl md:text-2xl lg:text-4xl font-bold text-center my-5'>Your Submitted Assignment</h2>
             <div className="overflow-x-auto">
                 <table className="table">
                     <thead>
