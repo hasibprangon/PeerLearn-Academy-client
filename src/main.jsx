@@ -31,7 +31,7 @@ const router = createBrowserRouter([
       {
         path: '/assignments',
         element: <Assignments></Assignments>,
-        loader: () => fetch(`http://localhost:5000/assignments`)
+        loader: () => fetch(`https://peer-learn-academy-server.vercel.app/assignments`)
       },
       {
         path: '/mySubmission',
@@ -40,7 +40,7 @@ const router = createBrowserRouter([
       {
         path: '/viewAssignments/:id',
         element: <PrivateRoute><ViewAssignments></ViewAssignments></PrivateRoute>,
-        loader: ({ params }) => fetch(`http://localhost:5000/assignments/${params.id}`)
+        loader: ({ params }) => fetch(`https://peer-learn-academy-server.vercel.app/assignments/${params.id}`)
       },
       {
         path: '/createAssignment',
@@ -57,7 +57,7 @@ const router = createBrowserRouter([
       {
         path: '/updateAssignment/:id',
         element: <PrivateRoute><UpdateAssignment></UpdateAssignment></PrivateRoute>,
-        loader: ({ params }) => fetch(`http://localhost:5000/assignments/${params.id}`)
+        loader: ({ params }) => fetch(`https://peer-learn-academy-server.vercel.app/assignments/${params.id}`)
       },
       {
         path: '/signIn',

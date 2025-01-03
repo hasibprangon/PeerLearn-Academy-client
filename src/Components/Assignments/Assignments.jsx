@@ -18,7 +18,7 @@ const Assignments = () => {
     useEffect(() => {
         if (search !== null && search !== undefined) {
             fetch(
-                `http://localhost:5000/search?search=${search}`
+                `https://peer-learn-academy-server.vercel.app/search?search=${search}`
             )
                 .then((res) => res.json())
                 .then((data) => setAssignments(data));
@@ -30,7 +30,7 @@ const Assignments = () => {
         const options = e.target.value;
         setDifficulty(options);
 
-        axios.get(`http://localhost:5000/filter?difficulty=${options}`)
+        axios.get(`https://peer-learn-academy-server.vercel.app/filter?difficulty=${options}`)
             .then(res => {
                 setAssignments(res.data)
             })

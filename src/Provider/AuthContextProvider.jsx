@@ -48,7 +48,7 @@ const AuthContextProvider = ({ children }) => {
 
             if (currentUser?.email) {
               const user = {email: currentUser?.email};
-              axios.post(`http://localhost:5000/jwt`, user, {
+              axios.post(`https://peer-learn-academy-server.vercel.app/jwt`, user, {
                 withCredentials: true
               })
               .then(res => {
@@ -56,7 +56,7 @@ const AuthContextProvider = ({ children }) => {
               })  
             }
             else{
-                axios.post('http://localhost:5000/logout', {}, {
+                axios.post('https://peer-learn-academy-server.vercel.app/logout', {}, {
                     withCredentials: true
                 })
                 .then(res => {
