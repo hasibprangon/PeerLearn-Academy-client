@@ -3,6 +3,7 @@ import { Link, NavLink } from 'react-router-dom';
 import { AuthContext } from '../../Provider/AuthContextProvider';
 import Swal from 'sweetalert2';
 import img from '../../../src/assets/peerLearnAcademy.png'
+import { styles } from '../../Styles/styles';
 
 const Header = ({ handleTheme }) => {
     const { user, signOutUser } = useContext(AuthContext);
@@ -33,12 +34,12 @@ const Header = ({ handleTheme }) => {
     }
 
     const links = <>
-        <li><NavLink to='/'>Home</NavLink></li>
-        <li><NavLink to='/assignments'>Assignments</NavLink></li>
-       
+        <li><NavLink className={styles.navLinks} to='/'>Home</NavLink></li>
+        <li><NavLink className={styles.navLinks} to='/assignments'>Assignments</NavLink></li>
+
         {
             user && user?.email &&
-            <li><NavLink to='/pendingAssignments'>Pending Assignments</NavLink></li>
+            <li><NavLink className={styles.navLinks} to='/pendingAssignments'>Pending Assignments</NavLink></li>
         }
         <label className="swap swap-rotate">
             {/* this hidden checkbox controls the state */}
@@ -64,8 +65,8 @@ const Header = ({ handleTheme }) => {
         </label>
     </>
     return (
-        <div>
-            <div className="navbar bg-gradient-to-r from-indigo-500">
+        <div className='sticky top-0 z-50 bg-[#1E3A8A]'>
+            <div className="navbar text-white">
                 <div className="navbar-start">
                     <div className="dropdown">
                         <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -102,41 +103,27 @@ const Header = ({ handleTheme }) => {
                 <div className="navbar-end">
                     {
                         user?.email ? (
-                            <>
-                                <div>
-                                    <img
+                            <div className="relative">
+                                <img
+                                    onMouseEnter={handleMouseHover}
+                                    onMouseDownCapture={handleMouseHoverOut}
+                                    className="w-10 h-10 border rounded-full cursor-pointer"
+                                    src={user?.photoURL}
+                                    alt="User"
+                                />
+                                {info && (
+                                    <div className="absolute right-0 mt-4 w-48 bg-white shadow-lg rounded-lg py-2"
                                         onMouseEnter={handleMouseHover}
-                                        onMouseDownCapture={handleMouseHoverOut}
-                                        className="w-10 h-10 border rounded-full mr-3"
-                                        src={user?.photoURL}
-                                        alt=''
-                                    />
-                                    {info && (
-                                        <div
-                                            className="absolute right-2  mt-4 w-44 bg-white rounded-lg shadow-lg z-10"
-                                            onMouseEnter={handleMouseHover}
-                                            onMouseLeave={handleMouseHoverOut}
-                                        >
-                                            <div className="p-4 border-b text-center">
-                                                <p className="text-sm text-gray-700">{user?.displayName}</p>
-                                                {
-                                                    user && user?.email &&
-                                                    <NavLink className='btn btn-xs' to='/createAssignment'>Create Assignment</NavLink>
-                                                }
-                                                {
-                                                    user && user?.email &&
-                                                    <NavLink className='btn btn-xs' to='/mySubmission'>My Submitted Assignment</NavLink>
-                                                }
-                                            </div>
-                                            <div className='text-center'>
-                                                <button className="btn" onClick={handleSignOut}>
-                                                    Sign Out
-                                                </button>
-                                            </div>
+                                        onMouseLeave={handleMouseHoverOut}>
+                                        <p className="text-center text-sm font-semibold text-gray-700">{user?.displayName}</p>
+                                        <div className="text-center">
+                                            <NavLink className="block px-4 py-2 text-black hover:bg-[#1E3A8A] hover:text-white" to="/createAssignment">Create Assignment</NavLink>
+                                            <NavLink className="block px-4 py-2 text-black hover:bg-[#1E3A8A] hover:text-white" to="/mySubmission">My Submissions</NavLink>
+                                            <button className="w-full px-4 py-2 text-red-600 hover:bg-gray-200" onClick={handleSignOut}>Sign Out</button>
                                         </div>
-                                    )}
-                                </div>
-                            </>
+                                    </div>
+                                )}
+                            </div>
                         ) : (
                             <div className='flex'>
                                 <Link to='/signIn' className="btn mr-3  mt-3">
