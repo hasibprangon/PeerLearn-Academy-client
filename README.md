@@ -48,7 +48,7 @@ PeerLearn Academy is an innovative web application that empowers users to engage
 
 ---
 
-- **Website**: [Visit PeerLearn Academy Live](https://reliable-quokka-a64195.netlify.app/)
+- **Website**: [Visit PeerLearn Academy Live](https://peerlearn-academy.netlify.app/)
 
 ---
 
