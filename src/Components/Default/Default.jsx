@@ -19,7 +19,9 @@ const Default = () => {
                 <Header
                     handleTheme={handleTheme}
                 ></Header>
-                <Outlet></Outlet>
+                <div className='min-h-[calc(100vh-180px)]'>
+                    <Outlet></Outlet>
+                </div>
                 <Footer></Footer>
             </div>
         </div>

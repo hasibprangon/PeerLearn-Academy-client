@@ -62,7 +62,7 @@ const AssignmentsCards = ({ assignment, handleDeleteAssignments }) => {
             </figure>
             <div className="card-body">
                 <h2 className="card-title text-xl font-bold">{title}</h2>
-                <p className="text-sm text-gray-600 line-clamp-2">{description}</p>
+                <p className="text-sm line-clamp-2">{description}</p>
                 <div className="flex flex-col justify-start items-start mt-4">
                     <div className="text-left">
                         <p className="text-sm">

@@ -65,7 +65,7 @@ const Header = ({ handleTheme }) => {
         </label>
     </>
     return (
-        <div className='sticky top-0 z-50 bg-[#1E3A8A]'>
+        <div className='sticky top-0 z-50 bg-gradient-to-r from-[#1E3A8A] to-[#4338CA] '>
             <div className="navbar text-white">
                 <div className="navbar-start">
                     <div className="dropdown">
@@ -126,7 +126,7 @@ const Header = ({ handleTheme }) => {
                             </div>
                         ) : (
                             <div className='flex'>
-                                <Link to='/signIn' className="btn mr-3  mt-3">
+                                <Link to='/signIn' className="btn mr-3 bg-[#9333EA] text-white mt-3">
                                     Sign In
                                 </Link>
                             </div>

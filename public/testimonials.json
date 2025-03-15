@@ -1,0 +1,73 @@
+[
+    {
+      "name": "Emily R.",
+      "role": "University Student",
+      "feedback": "Peer grading helped me improve my assignments significantly! The feedback was super valuable.",
+      "rating": 5,
+      "avatar": "https://i.pravatar.cc/150?img=3"
+    },
+    {
+      "name": "Jake M.",
+      "role": "High School Student",
+      "feedback": "I love how easy it is to collaborate with my friends! Learning feels fun and interactive.",
+      "rating": 5,
+      "avatar": "https://i.pravatar.cc/150?img=4"
+    },
+    {
+      "name": "Sophie L.",
+      "role": "Group Study Leader",
+      "feedback": "Creating study groups and reviewing assignments is a game-changer. This platform keeps me accountable.",
+      "rating": 4,
+      "avatar": "https://i.pravatar.cc/150?img=5"
+    },
+    {
+      "name": "Daniel K.",
+      "role": "College Student",
+      "feedback": "The best platform for peer-based learning! It keeps me engaged and helps me stay on track.",
+      "rating": 5,
+      "avatar": "https://i.pravatar.cc/150?img=6"
+    },
+    {
+      "name": "Lisa M.",
+      "role": "Exam Prep Student",
+      "feedback": "Studying with friends has never been easier! I got valuable feedback on my assignments.",
+      "rating": 4,
+      "avatar": "https://i.pravatar.cc/150?img=7"
+    },
+    {
+      "name": "Mark P.",
+      "role": "Graduate Student",
+      "feedback": "I love the collaboration features! Reviewing assignments with peers makes learning more effective.",
+      "rating": 5,
+      "avatar": "https://i.pravatar.cc/150?img=8"
+    },
+    {
+      "name": "Natalie S.",
+      "role": "Medical Student",
+      "feedback": "This platform is an absolute lifesaver for group studies! Makes complex topics easy to discuss.",
+      "rating": 5,
+      "avatar": "https://i.pravatar.cc/150?img=9"
+    },
+    {
+      "name": "Oliver T.",
+      "role": "Engineering Student",
+      "feedback": "A fantastic tool for academic collaboration! It's helped me improve my problem-solving skills.",
+      "rating": 4,
+      "avatar": "https://i.pravatar.cc/150?img=10"
+    },
+    {
+      "name": "Sophia W.",
+      "role": "High School Senior",
+      "feedback": "Such an amazing platform for study groups! It keeps learning engaging and effective.",
+      "rating": 5,
+      "avatar": "https://i.pravatar.cc/150?img=11"
+    },
+    {
+      "name": "David B.",
+      "role": "College Freshman",
+      "feedback": "I feel more confident in my assignments thanks to peer feedback. Love this platform!",
+      "rating": 4,
+      "avatar": "https://i.pravatar.cc/150?img=12"
+    }
+  ]
+  

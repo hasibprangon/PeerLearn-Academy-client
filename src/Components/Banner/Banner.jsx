@@ -8,7 +8,7 @@ import { easeInOut, motion } from "framer-motion";
 const Banner = () => {
     const { user } = useAuth();
     return (
-        <section className="bg-gradient-to-r from-[#1E3A8A] to-[#4338CA] text-white py-16">
+        <section className="bg-gradient-to-r from-[#1E3A8A] to-[#4338CA] text-white  py-16">
             <div className="container mx-auto flex flex-col md:flex-row items-center justify-between px-6">
                 {/* Left Section */}
                 <div className="max-w-xl text-center md:text-left">
