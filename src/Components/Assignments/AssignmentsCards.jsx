@@ -1,9 +1,11 @@
 import axios from 'axios';
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import useAuth from '../../hooks/useAuth';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
+import { FaRegEdit } from 'react-icons/fa';
+import { MdDeleteOutline } from 'react-icons/md';
 
 const AssignmentsCards = ({ assignment, handleDeleteAssignments }) => {
     const { _id, title, description, imgUrl, marks, difficulty, creatorData, dueDate } = assignment;
@@ -32,8 +34,7 @@ const AssignmentsCards = ({ assignment, handleDeleteAssignments }) => {
                                 });
                                 handleDeleteAssignments(id);
                             }
-                        })
-
+                        });
                 }
             });
         }
@@ -46,10 +47,10 @@ const AssignmentsCards = ({ assignment, handleDeleteAssignments }) => {
                 timer: 1500
             });
         }
+    };
 
-    }
     return (
-        <div className="card w-96 bg-base-100 shadow-xl hover:shadow-2xl transition-shadow mx-auto">
+        <div className="relative card w-96 bg-base-100 shadow-xl hover:shadow-2xl transition-shadow mx-auto">
             <figure className="relative h-64">
                 <img
                     src={imgUrl}
@@ -60,7 +61,27 @@ const AssignmentsCards = ({ assignment, handleDeleteAssignments }) => {
                     {difficulty}
                 </div>
             </figure>
-            <div className="card-body">
+            <div className="card-body ">
+                <div className="flex justify-between w-full mb-3">
+                    <Link to={`/updateAssignment/${_id}`} className="relative group  text-2xl font-semibold">
+                        <FaRegEdit />
+                        {/* Hover Text */}
+                        <span className="absolute left-0 top-10 opacity-0 group-hover:opacity-100 transition-opacity text-sm  bg-base-200 px-2 py-1 rounded">
+                            Update Assignment
+                        </span>
+                    </Link>
+                    <button
+                        className="relative group  text-2xl font-semibold"
+                        onClick={() => handleDelete(_id, creatorData?.creatorEmail)}
+                    >
+                        <MdDeleteOutline />
+                        {/* Hover Text */}
+                        <span className="absolute left-0 top-10 opacity-0 group-hover:opacity-100 transition-opacity text-sm  bg-base-200 px-2 py-1 rounded">
+                            Delete Assignment
+                        </span>
+                    </button>
+                </div>
+
                 <h2 className="card-title text-xl font-bold">{title}</h2>
                 <p className="text-sm line-clamp-2">{description}</p>
                 <div className="flex flex-col justify-start items-start mt-4">
@@ -74,28 +95,17 @@ const AssignmentsCards = ({ assignment, handleDeleteAssignments }) => {
                     </div>
                     <div className="mt-2">
                         <span className="text-sm font-semibold">Created by:</span>
-                        <span className="badge badge-accent ml-3 text-white">
+                        <span className="badge bg-gradient-to-r from-[#1E3A8A] to-[#4338CA] ml-3 text-white p-3">
                             {creatorData?.creatorName}
                         </span>
                     </div>
                 </div>
+
+                {/* View Assignment Button */}
                 <div className="card-actions justify-center mt-4">
-                    <Link className="btn btn-info text-white text-base font-semibold w-full" to={`/viewAssignments/${_id}`}>
-                        <button>
-                            View Assignment
-                        </button>
+                    <Link className="btn bg-[#9333EA] text-white text-base font-semibold w-full" to={`/viewAssignments/${_id}`}>
+                        View Assignment
                     </Link>
-                    <Link to={`/updateAssignment/${_id}`}
-                        className="btn btn-outline btn-warning text-white text-base font-semibold w-5/12"
-                    >
-                        Update
-                    </Link>
-                    <button
-                        className="btn btn-outline btn-error text-white text-base font-semibold w-5/12"
-                        onClick={() => handleDelete(_id, creatorData?.creatorEmail)}
-                    >
-                        Delete
-                    </button>
                 </div>
             </div>
         </div>

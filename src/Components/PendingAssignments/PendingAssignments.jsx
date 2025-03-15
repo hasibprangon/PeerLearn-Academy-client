@@ -56,7 +56,7 @@ const PendingAssignments = () => {
                                 </td>
                                 <td>{assignment?.name}</td>
                                 <th>
-                                    <Link to={`/giveMark/${assignment?._id}`} className="btn  btn-xs">Give Mark</Link>
+                                    <Link to={`/giveMark/${assignment?._id}`} className="p-2 rounded-xl hover:bg-[#af7cdf] bg-[#9333EA] text-white">Give Mark</Link>
                                 </th>
                             </tr>)
                         }

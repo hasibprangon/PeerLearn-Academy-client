@@ -46,7 +46,7 @@ const Assignments = () => {
 
             <div className="flex flex-col md:flex-row lg:flex-row items-center justify-center gap-5 mb-5 container mx-auto ml-4 md:ml-0 lg:ml-0">
                 <label className="label font-bold">
-                    <span className="label-text">Filter By Difficulty :</span>
+                    <span className="label-text lg:text-lg text-base">Filter By Difficulty :</span>
                 </label>
                 <select
                     value={difficulty}
@@ -67,7 +67,7 @@ const Assignments = () => {
                         placeholder="Search assignments"
                         className="input input-bordered"
                     />
-                    <button type="submit" className="btn btn-primary">
+                    <button type="submit" className="btn text-white bg-[#9333EA]">
                         Search
                     </button>
                 </form>
