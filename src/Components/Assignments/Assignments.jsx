@@ -36,50 +36,51 @@ const Assignments = () => {
             })
     }
 
-
     return (
         <div>
             <Helmet>
-                <title>Assignment</title>
+                <title>Assignments</title>
             </Helmet>
-            <h2 className="lg:text-4xl md:text-2xl text-xl text-center my-9 font-semibold ">All Assignments here</h2>
+            <h2 className="text-center text-xl md:text-2xl lg:text-4xl font-semibold my-6">All Assignments Here</h2>
 
-            <div className="flex flex-col md:flex-row lg:flex-row items-center justify-center gap-5 mb-5 container mx-auto ml-4 md:ml-0 lg:ml-0">
-                <label className="label font-bold">
-                    <span className="label-text lg:text-lg text-base">Filter By Difficulty :</span>
-                </label>
-                <select
-                    value={difficulty}
-                    onChange={handleDifficulty}
-                    className="select select-bordered w-full max-w-xs"
-                >
-                    <option value="all">All</option>
-                    <option value="easy">Easy</option>
-                    <option value="medium">Medium</option>
-                    <option value="hard">Hard</option>
-                </select>
+            <div className="flex flex-col md:flex-row lg:flex-row items-center justify-between gap-4 mb-6 container mx-auto px-6">
+                <div className="flex items-center gap-3">
+                    <label className="font-bold lg:text-lg text-base">Filter By Difficulty :</label>
+                    <select
+                        value={difficulty}
+                        onChange={handleDifficulty}
+                        className="select select-bordered w-full sm:max-w-xs"
+                    >
+                        <option value="all">All</option>
+                        <option value="easy">Easy</option>
+                        <option value="medium">Medium</option>
+                        <option value="hard">Hard</option>
+                    </select>
+                </div>
 
-                <form className="flex gap-2">
+                <form className="flex gap-2 w-full md:w-auto">
                     <input
                         type="text"
                         value={search}
                         onChange={(e) => setSearch(e.target.value)}
                         placeholder="Search assignments"
-                        className="input input-bordered"
+                        className="input input-bordered w-full"
                     />
-                    <button type="submit" className="btn text-white bg-[#9333EA]">
+                    <button type="submit" className="btn bg-[#9333EA] text-white">
                         Search
                     </button>
                 </form>
             </div>
 
-            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 container mx-auto my-10'>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 container mx-auto my-10">
                 {
-                    assignments?.map(assignment => <AssignmentsCards
-                        key={assignment._id}
-                        assignment={assignment}
-                        handleDeleteAssignments={handleDeleteAssignments}
-                    ></AssignmentsCards>)
+                    assignments?.map(assignment => (
+                        <AssignmentsCards
+                            key={assignment._id}
+                            assignment={assignment}
+                            handleDeleteAssignments={handleDeleteAssignments}
+                        />
+                    ))
                 }
             </div>
         </div>

@@ -26,7 +26,7 @@ const CreateAssignment = () => {
         const creatorData = {
             creatorEmail: user?.email,
             creatorName: user?.displayName
-        }
+        };
         const info = {
             title,
             description,
@@ -35,7 +35,7 @@ const CreateAssignment = () => {
             difficulty,
             creatorData,
             dueDate
-        }
+        };
         axiosSecure.post(`/createAssignment`, info)
             .then(res => {
                 if (res?.data?.insertedId) {
@@ -58,103 +58,95 @@ const CreateAssignment = () => {
                     showConfirmButton: false,
                     timer: 1500
                 });
-            })
+            });
     };
 
-
     return (
-        <div className="card w-full max-w-md mx-auto shadow-xl rounded-lg p-6 my-5">
+        <div className="container mx-auto my-8 p-4 sm:p-8 rounded-lg shadow-xl">
             <Helmet>
                 <title>Create Assignment</title>
             </Helmet>
-            <h2 className="text-3xl font-bold text-center mb-6">Create Assignment</h2>
-            <form onSubmit={handleSubmit} className="space-y-5">
-                {/* title */}
+            <h2 className="text-4xl font-semibold text-center  mb-8">Create Assignment</h2>
+            <form onSubmit={handleSubmit} className="space-y-6">
+                {/* Title */}
                 <div className="form-control">
-                    <label className="label">
-                        <span className="label-text">Title</span>
-                    </label>
+                    <label className="label text-gray-600 font-medium">Title</label>
                     <input
                         type="text"
                         name='title'
                         placeholder="Enter assignment title"
-                        className="input input-bordered border-2 bg-transparent focus:outline-none focus:ring-2 focus:ring-purple-300"
+                        className="input input-bordered border-2 bg-transparent focus:outline-none focus:ring-2 focus:ring-indigo-400 w-full py-2 px-3 rounded-md"
                         required
                     />
                 </div>
-                {/* description */}
+
+                {/* Description */}
                 <div className="form-control">
-                    <label className="label">
-                        <span className="label-text">Description</span>
-                    </label>
+                    <label className="label text-gray-600 font-medium">Description</label>
                     <textarea
                         placeholder="Enter assignment description"
                         name='description'
-                        className="textarea textarea-bordered border-2 bg-transparent focus:outline-none focus:ring-2 focus:ring-purple-300"
+                        className="textarea textarea-bordered border-2 bg-transparent focus:outline-none focus:ring-2 focus:ring-indigo-400 w-full py-2 px-3 rounded-md"
                         rows="4"
                         required
                     ></textarea>
                 </div>
-                {/* marks */}
+
+                {/* Marks */}
                 <div className="form-control">
-                    <label className="label">
-                        <span className="label-text">Marks</span>
-                    </label>
+                    <label className="label text-gray-600 font-medium">Marks</label>
                     <input
                         type="number"
                         name='marks'
                         placeholder="Enter total marks"
-                        className="input input-bordered border-2 bg-transparent focus:outline-none focus:ring-2 focus:ring-purple-300"
+                        className="input input-bordered border-2 bg-transparent focus:outline-none focus:ring-2 focus:ring-indigo-400 w-full py-2 px-3 rounded-md"
                         required
                     />
                 </div>
-                {/* Thumbnail Image */}
+
+                {/* Thumbnail Image URL */}
                 <div className="form-control">
-                    <label className="label">
-                        <span className="label-text">Thumbnail Image URL</span>
-                    </label>
+                    <label className="label text-gray-600 font-medium">Thumbnail Image URL</label>
                     <input
                         type="url"
                         name='imgUrl'
                         placeholder="Enter image URL"
-                        className="input input-bordered border-2 bg-transparent focus:outline-none focus:ring-2 focus:ring-purple-300"
+                        className="input input-bordered border-2 bg-transparent focus:outline-none focus:ring-2 focus:ring-indigo-400 w-full py-2 px-3 rounded-md"
                         required
                     />
                 </div>
-                {/* Difficulty */}
+
+                {/* Difficulty Level */}
                 <div className="form-control">
-                    <label className="label">
-                        <span className="label-text">Difficulty Level</span>
-                    </label>
+                    <label className="label text-gray-600 font-medium">Difficulty Level</label>
                     <select
                         name='difficulty'
-                        className="select select-bordered border-2 bg-transparent focus:outline-none focus:ring-2 focus:ring-purple-300"
+                        className="select select-bordered border-2 bg-transparent focus:outline-none focus:ring-2 focus:ring-indigo-400 w-full py-2 px-3 rounded-md"
                         required
                     >
-                        <option value="" disabled selected>
-                            Select difficulty level
-                        </option>
+                        <option value="" disabled selected>Select difficulty level</option>
                         <option value="easy">Easy</option>
                         <option value="medium">Medium</option>
                         <option value="hard">Hard</option>
                     </select>
                 </div>
-                {/* dueDate */}
+
+                {/* Due Date */}
                 <div className="form-control">
-                    <label className="label">
-                        <span className="label-text">Due Date</span>
-                    </label>
+                    <label className="label text-gray-600 font-medium">Due Date</label>
                     <DatePicker
                         selected={startDate}
                         onChange={(date) => setStartDate(date)}
                         name='dueDate'
-                        className="input input-bordered border-2 bg-transparent focus:outline-none focus:ring-2 focus:ring-purple-300 w-full"
+                        className="input input-bordered border-2 bg-transparent focus:outline-none focus:ring-2 focus:ring-indigo-400 w-full py-2 px-3 rounded-md"
                         placeholderText="Select due date"
                         required
                     />
                 </div>
-                <div className="form-control mt-6">
-                    <button className="btn btn-outline btn-accent">
+
+                {/* Submit Button */}
+                <div className="form-control">
+                    <button type="submit" className="btn bg-[#9333EA] w-full py-3 text-white font-semibold rounded-md hover:bg-indigo-600 focus:ring-2 focus:ring-indigo-400 transition-all">
                         Create Assignment
                     </button>
                 </div>

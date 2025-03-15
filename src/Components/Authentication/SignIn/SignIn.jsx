@@ -102,8 +102,8 @@ const SignIn = () => {
                             </button>
                         </div>
                         <div className="form-control mt-6">
-                            <button type='button' onClick={handleGoogleRegister} className='flex justify-center items-center gap-3 px-3 py-2 bg-gray-400 rounded-lg mb-4 text-white font-semibold'><FcGoogle className='text-lg' />Register With Google</button>
-                            <button className="btn btn-primary">Login</button>
+                            <button type='button' onClick={handleGoogleRegister} className='flex justify-center items-center gap-3 px-3 py-2 bg-gray-600 rounded-lg mb-4 text-white font-semibold w-full hover:bg-gray-500 transition-all'><FcGoogle className='text-lg' />Register With Google</button>
+                            <button className="btn bg-[#9333EA] text-white">Sign In</button>
                         </div>
                         <p className='text-center font-semibold mb-3'>New To this website? Please <Link to='/register' className='text-blue-500 font-bold'>Register</Link></p>
                     </form>

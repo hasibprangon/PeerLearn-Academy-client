@@ -78,7 +78,7 @@ const GIveMark = () => {
                             href={assignment[0]?.googleDocs}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-blue-300 underline"
+                            className="text-blue-300 md:text-base text-sm underline"
                         >
                             {assignment[0]?.googleDocs}
                         </a>

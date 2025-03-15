@@ -32,6 +32,9 @@ const Header = ({ handleTheme }) => {
     const handleMouseHoverOut = () => {
         setInfo(false);
     }
+    const handleClick = () => {
+        setInfo(prev => !prev); // Toggle the info visibility on click for small devices
+    };
 
     const links = <>
         <li><NavLink className={styles.navLinks} to='/'>Home</NavLink></li>
@@ -85,7 +88,7 @@ const Header = ({ handleTheme }) => {
                         </div>
                         <ul
                             tabIndex={0}
-                            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
+                            className="menu menu-sm dropdown-content bg-gradient-to-r from-[#1E3A8A] to-[#4338CA]  rounded-box z-[1] mt-3 w-52 p-2 shadow">
                             {
                                 links
                             }
@@ -104,26 +107,35 @@ const Header = ({ handleTheme }) => {
                     {
                         user?.email ? (
                             <div className="relative">
-                                <img
-                                    onMouseEnter={handleMouseHover}
-                                    onMouseDownCapture={handleMouseHoverOut}
-                                    className="w-10 h-10 border rounded-full cursor-pointer"
-                                    src={user?.photoURL}
-                                    alt="User"
-                                />
-                                {info && (
-                                    <div className="absolute right-0 mt-4 w-48 bg-white shadow-lg rounded-lg py-2"
-                                        onMouseEnter={handleMouseHover}
-                                        onMouseLeave={handleMouseHoverOut}>
-                                        <p className="text-center text-sm font-semibold text-gray-700">{user?.displayName}</p>
-                                        <div className="text-center">
-                                            <NavLink className="block px-4 py-2 text-black hover:bg-[#1E3A8A] hover:text-white" to="/createAssignment">Create Assignment</NavLink>
-                                            <NavLink className="block px-4 py-2 text-black hover:bg-[#1E3A8A] hover:text-white" to="/mySubmission">My Submissions</NavLink>
-                                            <button className="w-full px-4 py-2 text-red-600 hover:bg-gray-200" onClick={handleSignOut}>Sign Out</button>
-                                        </div>
+                            <img
+                                onClick={handleClick}  // Toggle on click for small devices
+                                onMouseEnter={handleMouseHover}  // Hover behavior for larger devices
+                                onMouseDownCapture={handleMouseHoverOut}  // Hover out behavior for larger devices
+                                className="w-10 h-10 border rounded-full cursor-pointer"
+                                src={user?.photoURL}
+                                alt="User"
+                            />
+                            {info && (
+                                <div 
+                                    className="absolute right-0 mt-4 w-48 bg-white shadow-lg rounded-lg py-2"
+                                    onMouseEnter={handleMouseHover}  // Keep dropdown open on hover for larger screens
+                                    onMouseLeave={handleMouseHoverOut}  // Close dropdown on hover out for larger screens
+                                >
+                                    <p className="text-center text-sm font-semibold text-gray-700">{user?.displayName}</p>
+                                    <div className="text-center">
+                                        <NavLink className="block px-4 py-2 text-black hover:bg-[#1E3A8A] hover:text-white" to="/createAssignment">
+                                            Create Assignment
+                                        </NavLink>
+                                        <NavLink className="block px-4 py-2 text-black hover:bg-[#1E3A8A] hover:text-white" to="/mySubmission">
+                                            My Submissions
+                                        </NavLink>
+                                        <button className="w-full px-4 py-2 text-red-600 hover:bg-gray-200" onClick={handleSignOut}>
+                                            Sign Out
+                                        </button>
                                     </div>
-                                )}
-                            </div>
+                                </div>
+                            )}
+                        </div>
                         ) : (
                             <div className='flex'>
                                 <Link to='/signIn' className="btn mr-3 bg-[#9333EA] text-white mt-3">

@@ -50,8 +50,8 @@ const AssignmentsCards = ({ assignment, handleDeleteAssignments }) => {
     };
 
     return (
-        <div className="relative card w-96 bg-base-100 shadow-xl hover:shadow-2xl transition-shadow mx-auto">
-            <figure className="relative h-64">
+        <div className="relative card w-full  bg-base-100 shadow-xl hover:shadow-2xl transition-shadow mx-auto">
+            <figure className="relative h-48 sm:h-64">
                 <img
                     src={imgUrl}
                     alt={title}
@@ -61,28 +61,28 @@ const AssignmentsCards = ({ assignment, handleDeleteAssignments }) => {
                     {difficulty}
                 </div>
             </figure>
-            <div className="card-body ">
+            <div className="card-body p-4">
                 <div className="flex justify-between w-full mb-3">
-                    <Link to={`/updateAssignment/${_id}`} className="relative group  text-2xl font-semibold">
+                    <Link to={`/updateAssignment/${_id}`} className="relative group text-xl sm:text-2xl font-semibold">
                         <FaRegEdit />
                         {/* Hover Text */}
-                        <span className="absolute left-0 top-10 opacity-0 group-hover:opacity-100 transition-opacity text-sm  bg-base-200 px-2 py-1 rounded">
+                        <span className="absolute left-0 top-10 opacity-0 group-hover:opacity-100 transition-opacity text-sm bg-base-200 px-2 py-1 rounded">
                             Update Assignment
                         </span>
                     </Link>
                     <button
-                        className="relative group  text-2xl font-semibold"
+                        className="relative group text-xl sm:text-2xl font-semibold"
                         onClick={() => handleDelete(_id, creatorData?.creatorEmail)}
                     >
                         <MdDeleteOutline />
                         {/* Hover Text */}
-                        <span className="absolute left-0 top-10 opacity-0 group-hover:opacity-100 transition-opacity text-sm  bg-base-200 px-2 py-1 rounded">
+                        <span className="absolute left-0 top-10 opacity-0 group-hover:opacity-100 transition-opacity text-sm bg-base-200 px-2 py-1 rounded">
                             Delete Assignment
                         </span>
                     </button>
                 </div>
 
-                <h2 className="card-title text-xl font-bold">{title}</h2>
+                <h2 className="card-title text-xl font-semibold">{title}</h2>
                 <p className="text-sm line-clamp-2">{description}</p>
                 <div className="flex flex-col justify-start items-start mt-4">
                     <div className="text-left">
