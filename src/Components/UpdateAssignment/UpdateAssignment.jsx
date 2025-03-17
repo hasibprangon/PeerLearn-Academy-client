@@ -69,6 +69,7 @@ const UpdateAssignment = () => {
             <Helmet>
                 <title>Update Assignment</title>
             </Helmet>
+            <h2 className='text-xl md:text-3xl font-bold text-center'>Update Assignment</h2>
             <form onSubmit={handleUpdate} className="space-y-5">
                 {/* title */}
                 <div className="form-control">
