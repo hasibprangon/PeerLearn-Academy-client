@@ -161,7 +161,7 @@ const UpdateAssignment = () => {
                     />
                 </div>
                 <div className="form-control mt-6">
-                    <button className="btn btn-outline btn-accent">
+                    <button className="btn bg-[#9333EA] text-white">
                         Update Assignment
                     </button>
                 </div>
